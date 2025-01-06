@@ -1,0 +1,1 @@
+enum MagicType { sorcery, enchanment }

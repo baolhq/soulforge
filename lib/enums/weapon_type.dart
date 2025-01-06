@@ -1,0 +1,20 @@
+enum WeaponType {
+  straighSword,
+  longsword,
+  greatsword,
+  katana,
+  pike,
+  halberd,
+  staff,
+  wand,
+  axe,
+  hammer,
+  mace,
+  claws,
+  fists,
+  bow,
+  crossbow,
+  smallShield,
+  mediumShield,
+  greatShield
+}
