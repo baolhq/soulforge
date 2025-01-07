@@ -15,6 +15,8 @@ Vestibulum in posuere quam. Nulla auctor quam sapien, vel iaculis velit tempus q
 Mauris aliquet risus a libero viverra lacinia. Phasellus non nulla massa. Duis interdum accumsan urna, vitae dignissim augue viverra eget. Donec eget ligula et orci rutrum molestie at eu velit. Phasellus volutpat rhoncus velit, ut aliquet elit volutpat at. Suspendisse non orci turpis. Aliquam et risus et leo tincidunt varius ac a purus. Suspendisse rutrum sit amet odio sed dictum. Vivamus consectetur, felis a commodo iaculis, velit tortor fringilla enim, rutrum hendrerit mauris metus non tortor. Etiam cursus libero in tempor malesuada. Cras egestas ligula neque, ut aliquam ante lobortis a. Nam eu sollicitudin ante. Curabitur eget massa laoreet massa fermentum aliquam.
 """;
 
+/// Show the initial splash screen, welcome message and other
+/// startup stuff for first time players
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
 
