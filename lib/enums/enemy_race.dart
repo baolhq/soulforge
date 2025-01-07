@@ -1,0 +1,16 @@
+enum EnemyRace {
+  slime,
+  goblin,
+  wolf,
+  snake,
+  human,
+  orc,
+  succubus,
+  lesserDemon,
+  greaterDemon,
+  archDemon,
+  wyvern,
+  dragon,
+  angel,
+  archangel,
+}

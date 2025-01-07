@@ -1,8 +1,8 @@
-import 'package:soulforge/enums/magic_type.dart';
+import 'package:soulforge/enums/skill_type.dart';
 import 'package:soulforge/enums/status.dart';
 import 'package:uuid/uuid.dart';
 
-class Magic {
+class Skill {
   late String id;
   String name = "";
   String description = "";
@@ -12,11 +12,11 @@ class Magic {
   bool isChargeable = false;
   bool isMultiTarget = false;
   bool isPiercing = false;
-  MagicType type = MagicType.sorcery;
+  SkillType type = SkillType.bonus;
   List<Status> statuses = List.empty();
-  List<Magic> prerequisites = List.empty();
+  List<Skill> prerequisites = List.empty();
 
-  Magic() {
+  Skill() {
     id = Uuid().v4();
   }
 }
