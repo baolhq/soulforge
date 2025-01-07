@@ -13,8 +13,8 @@ class Magic {
   bool isMultiTarget = false;
   bool isPiercing = false;
   MagicType type = MagicType.sorcery;
-  List<Status> statuses = List.empty();
-  List<Magic> prerequisites = List.empty();
+  List<Status> statuses = List.empty(growable: true);
+  List<Magic> prerequisites = List.empty(growable: true);
 
   Magic() {
     id = Uuid().v4();
