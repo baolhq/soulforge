@@ -8,6 +8,7 @@ class Weapon extends Item {
   double weight = 1;
   double damageMultiplier = 1;
   double attackRatingMultiplier = 1;
+  int upgradeLevel = 0;
   WeaponType type = WeaponType.straighSword;
   List<Status> statuses = List.empty(growable: true);
   List<Skill> skills = List.empty(growable: true);

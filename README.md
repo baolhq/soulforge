@@ -37,7 +37,9 @@ flutter run
 
 ### Contribution
 
-Contributions are welcome! Please fork the repository and submit a pull request for any feature requests or bug fixes. You can learn more about contributing on our [Code of Conduct](CODE_OF_CONDUCT.md).
+Contributions are welcome! Please fork the repository and submit a pull request for any feature requests or bug fixes. You can learn more about contributing on our [Code of Conduct](CODE_OF_CONDUCT.md)
+
+If you interested in translating this game, please take a look at the [Translation guide](docs/translation_guide.md).
 
 ### License
 

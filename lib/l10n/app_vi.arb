@@ -1,0 +1,7 @@
+{
+  "@@locale": "vi",
+  "helloWorld": "Xin chao!",
+  "@helloWorld": {
+    "description": "Mo ta"
+  }
+}

@@ -3,7 +3,7 @@ import 'package:soulforge/enums/status.dart';
 import 'package:soulforge/models/magic.dart';
 import 'package:uuid/uuid.dart';
 
-class Entity {
+abstract class Entity {
   late String id;
   String name = "";
   int level = 1;
