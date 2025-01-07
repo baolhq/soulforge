@@ -6,7 +6,7 @@ import 'package:uuid/uuid.dart';
 class TreasureClass {
   late String id;
   int tier = 0;
-  List<Item> items = List.empty();
+  List<Item> items = List.empty(growable: true);
   double totalDropRate = 0;
 
   TreasureClass() {

@@ -14,8 +14,8 @@ class Entity {
   Gender gender = Gender.unknown;
   String iconPath = "";
   String locationId = "";
-  List<Magic> magics = List.empty();
-  List<Status> statuses = List.empty();
+  List<Magic> magics = List.empty(growable: true);
+  List<Status> statuses = List.empty(growable: true);
 
   int strength = 1;
   int dexterity = 1;

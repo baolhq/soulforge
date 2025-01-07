@@ -13,8 +13,8 @@ class Skill {
   bool isMultiTarget = false;
   bool isPiercing = false;
   SkillType type = SkillType.bonus;
-  List<Status> statuses = List.empty();
-  List<Skill> prerequisites = List.empty();
+  List<Status> statuses = List.empty(growable: true);
+  List<Skill> prerequisites = List.empty(growable: true);
 
   Skill() {
     id = Uuid().v4();

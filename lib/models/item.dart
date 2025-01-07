@@ -15,7 +15,7 @@ class Item {
   Rarity rarity = Rarity.common;
 
   bool isCraftable = true;
-  List<Item> craftingRecipe = List.empty();
+  List<Item> craftingRecipe = List.empty(growable: true);
 
   String? ownerId;
 
