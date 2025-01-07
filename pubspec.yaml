@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   uuid: ^4.4.2
+  fluttertoast: ^8.2.10
 
 dev_dependencies:
   flutter_test:
