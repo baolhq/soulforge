@@ -2,7 +2,7 @@ import 'package:soulforge/enums/status.dart';
 import 'package:soulforge/enums/weapon_type.dart';
 import 'package:soulforge/models/item.dart';
 import 'package:soulforge/models/magic.dart';
-import 'package:soulforge/models/skill.dart';
+import 'package:soulforge/models/skills/skill.dart';
 
 class Weapon extends Item {
   double weight = 1;

@@ -1,1 +1,1 @@
-enum SkillType { charge, bonus, unique }
+enum SkillType { singleTarget, multiTarget, selfTargeted }

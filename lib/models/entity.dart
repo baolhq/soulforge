@@ -1,6 +1,7 @@
 import 'package:soulforge/enums/gender.dart';
 import 'package:soulforge/enums/status.dart';
 import 'package:soulforge/models/magic.dart';
+import 'package:soulforge/models/skills/skill.dart';
 import 'package:uuid/uuid.dart';
 
 abstract class Entity {
@@ -14,6 +15,7 @@ abstract class Entity {
   Gender gender = Gender.unknown;
   String iconPath = "";
   String locationId = "";
+  List<Skill> skills = List.empty(growable: true);
   List<Magic> magics = List.empty(growable: true);
   List<Status> statuses = List.empty(growable: true);
 
@@ -43,5 +45,19 @@ abstract class Entity {
 
   Entity() {
     id = Uuid().v4();
+  }
+
+  void takeDamage(double damage) {
+    if (health > 0) {
+      health -= damage.round();
+    }
+
+    if (health <= 0 && !statuses.contains(Status.fainted)) {
+      health = 0;
+      statuses.add(Status.fainted);
+    } else if (statuses.contains(Status.fainted)) {
+      statuses.remove(Status.fainted);
+      statuses.add(Status.dead);
+    }
   }
 }
