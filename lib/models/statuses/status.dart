@@ -10,24 +10,17 @@ class Status {
   final StatusType type;
   final List<StatModifier> modifiers;
   int duration;
-  double spreadChance;
 
   Status(
       {required this.name,
       required this.description,
-      this.type = StatusType.debuff,
       required this.modifiers,
-      this.duration = 0,
-      this.spreadChance = 0}) {
+      this.type = StatusType.debuff,
+      this.duration = 0}) {
     id = Uuid().v4();
   }
 
   void activate(Character target) {}
   void deactivate(Character target) {}
   void update(Character target) {}
-
-  @override
-  String toString() {
-    return '$name (Duration: $duration turns, Spread Chance: ${spreadChance * 100}%)';
-  }
 }

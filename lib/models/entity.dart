@@ -2,7 +2,7 @@ import 'package:soulforge/enums/gender.dart';
 import 'package:soulforge/enums/race.dart';
 import 'package:soulforge/models/magic.dart';
 import 'package:soulforge/models/skill.dart';
-import 'package:soulforge/models/status.dart';
+import 'package:soulforge/models/statuses/status.dart';
 import 'package:uuid/uuid.dart';
 
 abstract class Entity {
@@ -86,6 +86,10 @@ abstract class Entity {
   void takeDamage(double damage) {
     if (health > 0) {
       health -= damage.round();
+    } else {
+      die();
     }
   }
+
+  void die() {}
 }

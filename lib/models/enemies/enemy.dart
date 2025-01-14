@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:soulforge/models/entity.dart';
 
 class Enemy extends Entity {
@@ -12,4 +13,10 @@ class Enemy extends Entity {
       this.experience = 1,
       this.gold = 1,
       this.treasureClassId = ""});
+
+  /// Implement logic for enemy on slain
+  @override
+  void die() {
+    debugPrint("$name has died.");
+  }
 }

@@ -15,4 +15,18 @@ class Area {
       required this.locations}) {
     id = Uuid().v4();
   }
+
+  /// Get the minimum level requirement for this area
+  /// base on the lowest location level requirement.
+  int getLevelRequirement() {
+    int minLevel = 100;
+
+    for (var location in locations) {
+      if (minLevel < location.levelRequirement) {
+        minLevel = location.levelRequirement;
+      }
+    }
+
+    return minLevel;
+  }
 }

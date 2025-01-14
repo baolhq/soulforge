@@ -1,6 +1,6 @@
 import 'package:soulforge/enums/skill_type.dart';
 import 'package:soulforge/models/character.dart';
-import 'package:soulforge/models/status.dart';
+import 'package:soulforge/models/statuses/status.dart';
 import 'package:uuid/uuid.dart';
 
 class Skill {
