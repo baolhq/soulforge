@@ -4,12 +4,16 @@ class Location {
   late String id;
   final String name;
   final String description;
-  int levelRequirement;
+  final int levelRequirement;
+  double spawnRate;
+  final List<Location> nearbyLocations;
 
   Location(
       {required this.name,
       required this.description,
-      this.levelRequirement = 0}) {
+      required this.nearbyLocations,
+      this.levelRequirement = 0,
+      this.spawnRate = 10}) {
     id = Uuid().v4();
   }
 }

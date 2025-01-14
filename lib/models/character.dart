@@ -6,15 +6,14 @@ class Character extends Entity {
   double expMultiplier;
   double experience;
   int gold;
-  late List<Class> classes;
-  late List<Quest> quests;
+  List<Class> classes;
+  List<Quest> quests;
 
   Character(
       {required super.name,
+      required this.classes,
+      required this.quests,
       this.expMultiplier = 1,
       this.experience = 0,
-      this.gold = 0}) {
-    classes = List.empty(growable: true);
-    quests = List.empty(growable: true);
-  }
+      this.gold = 0});
 }

@@ -5,11 +5,11 @@ import 'package:uuid/uuid.dart';
 
 class TreasureClass {
   late String id;
-  int tier = 0;
-  List<Item> items = List.empty(growable: true);
-  double totalDropRate = 0;
+  final int tier;
+  double totalDropRate;
+  List<Item> items;
 
-  TreasureClass() {
+  TreasureClass({required this.items, this.tier = 0, this.totalDropRate = 0}) {
     id = Uuid().v4();
   }
 

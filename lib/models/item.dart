@@ -3,8 +3,8 @@ import 'package:uuid/uuid.dart';
 
 class Item {
   late String id;
-  String name;
-  String description;
+  final String name;
+  final String description;
   int levelRequirement;
   int maximumStack;
   String iconPath;
@@ -19,9 +19,9 @@ class Item {
 
   Item(
       {required this.name,
+      required this.description,
       required this.isCraftable,
       required this.craftingRecipe,
-      this.description = "",
       this.levelRequirement = 0,
       this.maximumStack = 99,
       this.iconPath = "",

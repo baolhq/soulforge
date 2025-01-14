@@ -6,10 +6,11 @@ void main() {
   test('Treasure class items size should be increased', () {
     final item = Item(
       name: "Cloak",
+      description: "A basic cloak",
       isCraftable: false,
       craftingRecipe: List.empty(),
     );
-    var treasureClass = TreasureClass();
+    var treasureClass = TreasureClass(items: [item]);
     treasureClass.addItem(item);
     expect(treasureClass.items.length, 1);
   });

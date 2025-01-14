@@ -4,19 +4,31 @@ import 'package:uuid/uuid.dart';
 
 class Magic {
   late String id;
-  String name = "";
-  String description = "";
-  int energyCost = 0;
-  double recharge = 0;
-  bool isRecharging = false;
-  bool isChargeable = false;
-  bool isMultiTarget = false;
-  bool isPiercing = false;
-  MagicType type = MagicType.sorcery;
-  List<Status> statuses = List.empty(growable: true);
-  List<Magic> prerequisites = List.empty(growable: true);
+  final String name;
+  final String description;
+  int energyCost;
+  double recharge;
+  bool isRecharging;
+  bool isChargeable;
+  bool isMultiTarget;
+  bool isPiercing;
+  MagicType type;
+  List<Status> statuses;
+  List<Magic> prerequisites;
 
-  Magic() {
+  Magic({
+    required this.name,
+    required this.description,
+    required this.statuses,
+    required this.prerequisites,
+    this.energyCost = 0,
+    this.recharge = 0,
+    this.isRecharging = false,
+    this.isChargeable = false,
+    this.isMultiTarget = false,
+    this.isPiercing = false,
+    this.type = MagicType.sorcery,
+  }) {
     id = Uuid().v4();
   }
 }
