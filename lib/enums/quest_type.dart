@@ -1,1 +1,1 @@
-enum QuestType { story, side, daily, weekly, monthly, secret }
+enum QuestType { story, side, bounty, secret }

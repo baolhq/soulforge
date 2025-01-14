@@ -2,11 +2,14 @@ import 'package:uuid/uuid.dart';
 
 class Location {
   late String id;
-  String name = "";
-  String description = "";
-  int levelRequirement = 0;
+  final String name;
+  final String description;
+  int levelRequirement;
 
-  Location() {
+  Location(
+      {required this.name,
+      required this.description,
+      this.levelRequirement = 0}) {
     id = Uuid().v4();
   }
 }

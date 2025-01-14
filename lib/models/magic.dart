@@ -1,5 +1,5 @@
 import 'package:soulforge/enums/magic_type.dart';
-import 'package:soulforge/enums/status.dart';
+import 'package:soulforge/models/status.dart';
 import 'package:uuid/uuid.dart';
 
 class Magic {

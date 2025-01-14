@@ -3,10 +3,11 @@ import 'package:uuid/uuid.dart';
 
 class Party {
   late String id;
-  String name = "";
-  List<Character> members = List.empty(growable: true);
+  String name;
+  late List<Character> members;
 
-  Party() {
+  Party({required this.name}) {
     id = Uuid().v4();
+    members = List.empty(growable: true);
   }
 }

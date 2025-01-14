@@ -1,0 +1,4 @@
+enum ModifierType {
+  flat,
+  percentage,
+}

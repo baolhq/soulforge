@@ -1,16 +1,31 @@
-import 'package:soulforge/enums/status.dart';
 import 'package:soulforge/enums/weapon_type.dart';
 import 'package:soulforge/models/item.dart';
 import 'package:soulforge/models/magic.dart';
-import 'package:soulforge/models/skills/skill.dart';
+import 'package:soulforge/models/skill.dart';
+import 'package:soulforge/models/status.dart';
 
 class Weapon extends Item {
-  double weight = 1;
-  double damageMultiplier = 1;
-  double attackRatingMultiplier = 1;
-  int upgradeLevel = 0;
-  WeaponType type = WeaponType.straighSword;
-  List<Status> statuses = List.empty(growable: true);
-  List<Skill> skills = List.empty(growable: true);
-  List<Magic> magics = List.empty(growable: true);
+  double weight;
+  double damageMultiplier;
+  double attackRatingMultiplier;
+  int upgradeLevel;
+  final WeaponType type;
+  late List<Status> statuses;
+  late List<Skill> skills;
+  late List<Magic> magics;
+
+  Weapon({
+    required super.name,
+    required super.isCraftable,
+    required super.craftingRecipe,
+    required this.type,
+    this.weight = 1,
+    this.damageMultiplier = 1,
+    this.attackRatingMultiplier = 1,
+    this.upgradeLevel = 0,
+  }) {
+    statuses = List.empty(growable: true);
+    skills = List.empty(growable: true);
+    magics = List.empty(growable: true);
+  }
 }
