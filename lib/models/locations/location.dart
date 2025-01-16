@@ -13,7 +13,7 @@ class Location {
       required this.description,
       required this.nearbyLocations,
       this.levelRequirement = 0,
-      this.spawnRate = 10}) {
+      this.spawnRate = 0}) {
     id = Uuid().v4();
   }
 }

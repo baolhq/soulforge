@@ -19,8 +19,7 @@ class Armor extends Item {
   Armor(
       {required super.name,
       required super.description,
-      required super.isCraftable,
-      required super.craftingRecipe,
+      required super.basePrice,
       this.weight = 1,
       this.durability = 100,
       this.upgradeLevel = 0,

@@ -7,6 +7,7 @@ class Item {
   final String description;
   int levelRequirement;
   int maximumStack;
+  double basePrice;
   String iconPath;
   bool isQuestItem;
   bool isCollectable;
@@ -14,23 +15,25 @@ class Item {
   double dropRate;
   Rarity rarity;
   String ownerId;
-  final bool isCraftable;
-  late final List<Item> craftingRecipe;
+  bool isCraftable;
+  late List<Item> craftingRecipe;
 
-  Item(
-      {required this.name,
-      required this.description,
-      required this.isCraftable,
-      required this.craftingRecipe,
-      this.levelRequirement = 0,
-      this.maximumStack = 99,
-      this.iconPath = "",
-      this.isQuestItem = false,
-      this.isCollectable = true,
-      this.canDrop = false,
-      this.dropRate = 1,
-      this.rarity = Rarity.common,
-      this.ownerId = ""}) {
+  Item({
+    required this.name,
+    required this.description,
+    required this.basePrice,
+    this.levelRequirement = 0,
+    this.maximumStack = 99,
+    this.iconPath = "",
+    this.isQuestItem = false,
+    this.isCollectable = true,
+    this.canDrop = false,
+    this.dropRate = 1,
+    this.rarity = Rarity.common,
+    this.ownerId = "",
+    this.isCraftable = false,
+  }) {
     id = Uuid().v4();
+    craftingRecipe = List.empty(growable: true);
   }
 }
