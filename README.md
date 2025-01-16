@@ -1,6 +1,6 @@
 # SoulForge
 
-**SoulForge** is a cross-platform dungeon crawler game focused on loot, combat, and storytelling, inspired by _Grim Tides_. It features turn-based combat and a simple dungeon-crawling grid, delivering a rich and immersive gaming experience.
+**SoulForge** is a cross-platform dungeon crawler game focused on loot, combat, and storytelling, inspired by _Grim Tides_ and _Knights of Pen & Paper_. It features turn-based combat and dungeon-crawling grid, delivering a rich and immersive gaming experience.
 
 ### Features
 
@@ -37,7 +37,7 @@ flutter run
 
 ### Contribution
 
-Contributions are welcome! Please fork the repository and submit a pull request for any feature requests or bug fixes. You can learn more about contributing on our [Code of Conduct](CODE_OF_CONDUCT.md)
+Contributions are welcome! Please fork the repository and submit a pull request for any feature requests or bug fixes. You can learn more about contributing on our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 If you interested in translating this game, please take a look at the [Translation guide](docs/translation_guide.md).
 
