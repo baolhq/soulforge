@@ -1,4 +1,5 @@
 import 'package:soulforge/enums/rarity.dart';
+import 'package:soulforge/enums/rune_type.dart';
 import 'package:uuid/uuid.dart';
 
 class Item {
@@ -9,10 +10,13 @@ class Item {
   int maximumStack;
   double basePrice;
   String iconPath;
+  bool isUsable;
   bool isQuestItem;
   bool isCollectable;
   bool canDrop;
   double dropRate;
+  bool isRune;
+  RuneType runeType;
   Rarity rarity;
   String ownerId;
   bool isCraftable;
@@ -25,10 +29,13 @@ class Item {
     this.levelRequirement = 0,
     this.maximumStack = 99,
     this.iconPath = "",
+    this.isUsable = false,
     this.isQuestItem = false,
     this.isCollectable = true,
     this.canDrop = false,
     this.dropRate = 1,
+    this.isRune = false,
+    this.runeType = RuneType.none,
     this.rarity = Rarity.common,
     this.ownerId = "",
     this.isCraftable = false,

@@ -1,7 +1,9 @@
 import 'package:soulforge/enums/npc_role.dart';
 import 'package:soulforge/models/npcs/dialogue.dart';
+import 'package:uuid/uuid.dart';
 
 class NPC {
+  late String id;
   String name;
   String background;
   NpcRole role;
@@ -11,6 +13,7 @@ class NPC {
       {required this.name,
       required this.background,
       this.role = NpcRole.vendor}) {
+    id = Uuid().v4();
     dialogues = List.empty(growable: true);
   }
 

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/models/npcs/dialogue.dart';
 import 'package:soulforge/models/npcs/npc.dart';
 
 class DialogueManager {
   void startDialogue(NPC npc) {
     int dialogueIndex = 0;
     while (true) {
-      Dialogue currentDialogue = npc.getDialogue(dialogueIndex);
+      var currentDialogue = npc.getDialogue(dialogueIndex);
       debugPrint(currentDialogue.text); // Display dialogue text
       if (currentDialogue.options.isEmpty) break; // End if no options
 

@@ -1,4 +1,5 @@
 enum RuneType {
+  none,
   aeth,
   cynd,
   vorn,
