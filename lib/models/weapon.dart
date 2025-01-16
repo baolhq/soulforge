@@ -17,8 +17,7 @@ class Weapon extends Item {
   Weapon({
     required super.name,
     required super.description,
-    required super.isCraftable,
-    required super.craftingRecipe,
+    required super.basePrice,
     required this.type,
     this.weight = 1,
     this.damageMultiplier = 1,

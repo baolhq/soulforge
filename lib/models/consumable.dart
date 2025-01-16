@@ -8,8 +8,7 @@ class Consumable extends Item {
   Consumable(
       {required super.name,
       required super.description,
-      required super.isCraftable,
-      required super.craftingRecipe,
+      required super.basePrice,
       this.usageLeft = 1,
       this.healthRestoration = 0,
       this.manaRestoration = 0});

@@ -7,10 +7,11 @@ class TreasureClass {
   late String id;
   final int tier;
   double totalDropRate;
-  List<Item> items;
+  late List<Item> items;
 
-  TreasureClass({required this.items, this.tier = 0, this.totalDropRate = 0}) {
+  TreasureClass({this.tier = 0, this.totalDropRate = 0}) {
     id = Uuid().v4();
+    items = List.empty(growable: true);
   }
 
   void addItem(Item item) {

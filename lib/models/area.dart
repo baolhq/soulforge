@@ -1,4 +1,4 @@
-import 'package:soulforge/models/location.dart';
+import 'package:soulforge/models/locations/location.dart';
 import 'package:uuid/uuid.dart';
 
 class Area {

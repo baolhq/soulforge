@@ -4,13 +4,9 @@ import 'package:soulforge/models/treasure_class.dart';
 
 void main() {
   test('Treasure class items size should be increased', () {
-    final item = Item(
-      name: "Cloak",
-      description: "A basic cloak",
-      isCraftable: false,
-      craftingRecipe: List.empty(),
-    );
-    var treasureClass = TreasureClass(items: [item]);
+    final item =
+        Item(name: "Cloak", description: "A basic cloak", basePrice: 100);
+    var treasureClass = TreasureClass();
     treasureClass.addItem(item);
     expect(treasureClass.items.length, 1);
   });
