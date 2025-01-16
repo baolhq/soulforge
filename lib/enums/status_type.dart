@@ -1,1 +1,1 @@
-enum StatusType { buff, debuff, control }
+enum StatusType { buff, neutral, debuff }

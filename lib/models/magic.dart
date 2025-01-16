@@ -6,7 +6,9 @@ class Magic {
   late String id;
   final String name;
   final String description;
-  int energyCost;
+  int manaCost;
+  int duration;
+  double accuracy;
   double recharge;
   bool isRecharging;
   bool isChargeable;
@@ -21,7 +23,9 @@ class Magic {
     required this.description,
     required this.statuses,
     required this.prerequisites,
-    this.energyCost = 0,
+    this.manaCost = 0,
+    this.duration = 0,
+    this.accuracy = 100,
     this.recharge = 0,
     this.isRecharging = false,
     this.isChargeable = false,

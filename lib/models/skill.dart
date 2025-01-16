@@ -9,6 +9,7 @@ class Skill {
   final String description;
   int manaCost;
   int duration;
+  double accuracy;
   int recharge;
   bool isRecharging;
   bool isChargeable;
@@ -23,6 +24,7 @@ class Skill {
       required this.description,
       this.manaCost = 0,
       this.duration = 0,
+      this.accuracy = 100,
       this.recharge = 0,
       this.isRecharging = false,
       this.isChargeable = false,

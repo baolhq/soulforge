@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:soulforge/enums/saving_throw.dart';
 import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
 const faintedDuration = 3;
 
-class FaintedStatus extends Status {
-  FaintedStatus()
+class Fainted extends Status {
+  Fainted()
       : super(
             name: "Fainted",
             description:
                 "The character has fainted and will die after 3 turns unless rescued.",
-            modifiers: [],
             type: StatusType.debuff,
+            savingThrow: SavingThrow.constitution,
             duration: faintedDuration);
 
   @override
   void activate(Character target) {
     super.activate(target);
 
-    // Remove all other statuses before fainting
-    target.statuses.clear();
-    target.statuses.add(FaintedStatus());
+    // Fainted cannot be stacked
+    target.statuses.removeWhere((status) => status is Fainted);
+    target.statuses.add(this);
+    debugPrint("${target.name} is now fainted.");
   }
 
   @override
   void update(Character target) {
     super.update(target);
+
     if (duration <= 0) {
       if (!target.isRescued) {
         target.die();
@@ -37,6 +40,8 @@ class FaintedStatus extends Status {
   @override
   void deactivate(Character target) {
     super.deactivate(target);
+
+    target.statuses.remove(this);
     debugPrint("$name fainted status has been removed");
   }
 }

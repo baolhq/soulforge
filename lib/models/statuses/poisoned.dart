@@ -4,12 +4,15 @@ import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
-class Burned extends Status {
-  Burned()
+class Poisoned extends Status {
+  double damage = 0.025;
+  double increment = 0.025;
+
+  Poisoned()
       : super(
-            name: "Burned",
+            name: "Poisoned",
             description:
-                "The entity is scorched, taking heat damage over time.",
+                "The entity is afflicted by toxic substances, causing progressive health deterioration.",
             savingThrow: SavingThrow.intelligence,
             type: StatusType.debuff);
 
@@ -17,7 +20,10 @@ class Burned extends Status {
   void update(Character target) {
     super.update(target);
 
-    target.takeDamage(target.maxHealth * 0.05);
+    target.takeDamage(damage);
+    damage += increment;
+
+    debugPrint("${target.name} poison damage has been increased to $damage");
   }
 
   @override
@@ -25,6 +31,6 @@ class Burned extends Status {
     super.deactivate(target);
 
     target.statuses.remove(this);
-    debugPrint("${target.name} is no longer burned.");
+    debugPrint("${target.name} is no longer poisoned.");
   }
 }

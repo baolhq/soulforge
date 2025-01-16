@@ -1,8 +1,8 @@
 import 'package:soulforge/enums/modifier_type.dart';
-import 'package:soulforge/enums/stat_attribute.dart';
+import 'package:soulforge/enums/saving_throw.dart';
 
 class StatModifier {
-  final StatAttribute attribute;
+  final SavingThrow attribute;
   final ModifierType type;
   final double value;
 

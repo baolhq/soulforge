@@ -11,6 +11,7 @@ abstract class Entity {
   int level;
   int health;
   int maxHealth;
+  int temporaryHealth;
   int mana;
   int maxMana;
   Race race;
@@ -21,22 +22,27 @@ abstract class Entity {
   late List<Magic> magics;
   late List<Status> statuses;
 
-  int strength;
-  int dexterity;
-  int intelligence;
-  int wisdom;
-  int constitution;
-  int charisma;
-  int luck;
+  int strength; // Affect overall melee damage
+  int dexterity; // Affect ranged damage, initiative
+  int intelligence; // Affect spell power, magic resistance
+  int wisdom; // Affect status saving throw, enchantment
+  int constitution; // Affect maxium HP and equipment load
+  int charisma; // Affect status saving throw, barter rate
+  int luck; // Affect evasion, critical hit chance
 
   double attackDamage;
   double attackDamageMultiplier;
   double attackRating;
   double attackRatingMultiplier;
   double magicDamageMultiplier;
+  double fireDamageMultiplier;
+  double coldDamageMultiplier;
+  double lightningDamageMultiplier;
+  double poisonDamageMultiplier;
   double defense;
   double critChance;
   double evasion;
+  int initiative;
 
   double physicalResistance;
   double magicResistance;
@@ -45,11 +51,16 @@ abstract class Entity {
   double lightningResistance;
   double poisonResistance;
 
+  int row;
+  int col;
+  late List<List<Entity>> partyGrid;
+
   Entity(
       {required this.name,
       this.level = 1,
       this.health = 100,
       this.maxHealth = 100,
+      this.temporaryHealth = 0,
       this.mana = 100,
       this.maxMana = 100,
       this.race = Race.human,
@@ -68,19 +79,27 @@ abstract class Entity {
       this.attackRating = 1,
       this.attackRatingMultiplier = 1,
       this.magicDamageMultiplier = 1,
+      this.fireDamageMultiplier = 1,
+      this.coldDamageMultiplier = 1,
+      this.lightningDamageMultiplier = 1,
+      this.poisonDamageMultiplier = 1,
       this.defense = 1,
       this.critChance = 0.1,
       this.evasion = 1,
+      this.initiative = 0,
       this.physicalResistance = 0,
       this.magicResistance = 0,
       this.fireResistance = 0,
       this.coldResistance = 0,
       this.lightningResistance = 0,
-      this.poisonResistance = 0}) {
+      this.poisonResistance = 0,
+      this.row = 0,
+      this.col = 0}) {
     id = Uuid().v4();
     skills = List.empty(growable: true);
     magics = List.empty(growable: true);
     statuses = List.empty(growable: true);
+    partyGrid = List.empty(growable: true);
   }
 
   void takeDamage(double damage) {
@@ -92,4 +111,30 @@ abstract class Entity {
   }
 
   void die() {}
+
+  List<Entity> getAdjacentEntities() {
+    List<Entity> adjacentEntities = [];
+    var adjacentOffset = [
+      [-1, 0], // Above
+      [1, 0], // Below
+      [0, -1], // Left
+      [0, 1], // Right
+    ];
+
+    for (var offset in adjacentOffset) {
+      int newRow = row + offset[0];
+      int newCol = col + offset[1];
+
+      // Check if the new position is within the grid bounds
+      if (newRow >= 0 &&
+          newRow < partyGrid.length &&
+          newCol >= 0 &&
+          newCol < partyGrid[0].length) {
+        var adjacentEntity = partyGrid[newRow][newCol];
+        adjacentEntities.add(adjacentEntity);
+      }
+    }
+
+    return adjacentEntities;
+  }
 }
