@@ -12,11 +12,7 @@ class Tavern extends Location {
   late List<Quest> availableQuests;
   late List<Item> stocks;
 
-  Tavern(String name, String description, List<Location> nearbyLocations)
-      : super(
-            name: name,
-            description: description,
-            nearbyLocations: nearbyLocations) {
+  Tavern({required super.name, required super.description}) {
     recuits = List.empty(growable: true);
     availableQuests = List.empty(growable: true);
     stocks = List.empty(growable: true);

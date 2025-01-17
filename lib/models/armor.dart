@@ -6,6 +6,7 @@ import 'package:soulforge/models/item.dart';
 class Armor extends Item {
   double weight;
   double durability;
+  double baseUpgradePrice;
   int upgradeLevel;
   bool isBroken;
 
@@ -22,6 +23,7 @@ class Armor extends Item {
       required super.basePrice,
       this.weight = 1,
       this.durability = 100,
+      this.baseUpgradePrice = 1,
       this.upgradeLevel = 0,
       this.isBroken = false,
       this.physicalResistance = 0,

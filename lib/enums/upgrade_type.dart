@@ -1,0 +1,1 @@
+enum UpgradeType { armor, weapon }

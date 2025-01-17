@@ -11,11 +11,10 @@ import 'package:soulforge/models/npcs/vendor.dart';
 class Market extends Location {
   late List<NPC> npcs;
 
-  Market(String name, String description, List<Location> nearbyLocations)
-      : super(
-            name: name,
-            description: description,
-            nearbyLocations: nearbyLocations) {
+  Market({
+    required super.name,
+    required super.description,
+  }) {
     npcs = List.empty(growable: true);
   }
 

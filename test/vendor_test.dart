@@ -8,7 +8,7 @@ import 'package:soulforge/models/weapon.dart';
 void main() {
   test("Bob's gold should be 155", () {
     final Character bob = Character(name: "Bob", gold: 300);
-    final Vendor merchant = Vendor("Merchant", "");
+    final Vendor merchant = Vendor(name: "Merchant", background: "");
     final Item sword = Weapon(
         name: "Longsword",
         description: "",

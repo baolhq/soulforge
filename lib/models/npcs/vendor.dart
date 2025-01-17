@@ -11,9 +11,12 @@ class Vendor extends NPC {
   int maxBribeThreshold;
   late Map<Item, int> buyBackPrices; // Track sold item prices
 
-  Vendor(String name, String background,
-      {this.gold = 100, this.maxBribeThreshold = 100})
-      : super(name: name, background: background, role: NpcRole.vendor) {
+  Vendor(
+      {required super.name,
+      required super.background,
+      super.role = NpcRole.vendor,
+      this.gold = 100,
+      this.maxBribeThreshold = 100}) {
     inventory = List.empty(growable: true);
     buyBackPrices = {};
   }

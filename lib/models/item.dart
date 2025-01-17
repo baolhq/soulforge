@@ -7,7 +7,8 @@ class Item {
   final String name;
   final String description;
   int levelRequirement;
-  int maximumStack;
+  int quantity;
+  int maxQuantity;
   double basePrice;
   String iconPath;
   bool isUsable;
@@ -24,10 +25,11 @@ class Item {
 
   Item({
     required this.name,
-    required this.description,
-    required this.basePrice,
+    this.description = "",
     this.levelRequirement = 0,
-    this.maximumStack = 99,
+    this.quantity = 0,
+    this.maxQuantity = 99,
+    this.basePrice = 0,
     this.iconPath = "",
     this.isUsable = false,
     this.isQuestItem = false,
