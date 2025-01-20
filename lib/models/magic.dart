@@ -14,7 +14,7 @@ class Magic {
   bool isChargeable;
   bool isMultiTarget;
   bool isPiercing;
-  MagicType type;
+  MagicType magicType;
   List<Status> statuses;
   List<Magic> prerequisites;
 
@@ -31,7 +31,7 @@ class Magic {
     this.isChargeable = false,
     this.isMultiTarget = false,
     this.isPiercing = false,
-    this.type = MagicType.sorcery,
+    this.magicType = MagicType.sorcery,
   }) {
     id = Uuid().v4();
   }

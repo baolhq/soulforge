@@ -9,7 +9,6 @@ class Vendor extends NPC {
   int gold;
   int bribeAmount = 0;
   int maxBribeThreshold;
-  late Map<Item, int> buyBackPrices; // Track sold item prices
 
   Vendor(
       {required super.name,
@@ -18,7 +17,6 @@ class Vendor extends NPC {
       this.gold = 100,
       this.maxBribeThreshold = 100}) {
     inventory = List.empty(growable: true);
-    buyBackPrices = {};
   }
 
   /// Bribe the vendor, affecting the item buying and selling price
@@ -35,9 +33,6 @@ class Vendor extends NPC {
       seller.gold += adjustedPrice;
       seller.inventory.remove(item);
       inventory.add(item);
-
-      // Track the buy-back price, add 10% subcharge
-      buyBackPrices[item] = (adjustedPrice * 1.1).round();
 
       debugPrint(
           "${seller.name} sold ${item.name} to the vendor for $adjustedPrice gold.");
@@ -57,28 +52,6 @@ class Vendor extends NPC {
       debugPrint("${buyer.name} bought ${item.name} for $adjustedPrice gold.");
     } else {
       debugPrint("${buyer.name} doesn't have enough gold!");
-    }
-  }
-
-  /// Buy back sold item for this vendor.
-  void buyBackItem(Character buyer, Item item) {
-    if (buyBackPrices.containsKey(item)) {
-      int buyBackPrice = buyBackPrices[item]!;
-
-      if (buyer.gold >= buyBackPrice) {
-        buyer.gold -= buyBackPrice;
-        buyer.inventory.add(item);
-        inventory.remove(item);
-        buyBackPrices.remove(item); // Remove the buy-back price from the map
-
-        debugPrint(
-            "${buyer.name} bought back ${item.name} for $buyBackPrice gold.");
-      } else {
-        debugPrint(
-            "${buyer.name} doesn't have enough gold to buy back ${item.name}.");
-      }
-    } else {
-      debugPrint("${item.name} is no longer available for buy-back.");
     }
   }
 

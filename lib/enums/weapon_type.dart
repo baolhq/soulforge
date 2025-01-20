@@ -1,10 +1,6 @@
 enum WeaponType {
-  straighSword,
-  longsword,
-  greatsword,
-  katana,
-  pike,
-  halberd,
+  sword,
+  polearms,
   staff,
   wand,
   axe,

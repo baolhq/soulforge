@@ -3,7 +3,6 @@ import 'package:soulforge/enums/class.dart';
 import 'package:soulforge/models/entity.dart';
 import 'package:soulforge/models/item.dart';
 import 'package:soulforge/models/npcs/vendor.dart';
-import 'package:soulforge/models/quest.dart';
 import 'package:soulforge/models/statuses/fainted.dart';
 
 class Character extends Entity {
@@ -14,7 +13,6 @@ class Character extends Entity {
   bool isRescued;
   late List<Item> inventory;
   late List<Class> classes;
-  late List<Quest> quests;
 
   Character(
       {required super.name,
@@ -25,7 +23,6 @@ class Character extends Entity {
       this.isRescued = false}) {
     inventory = List.empty(growable: true);
     classes = List.empty(growable: true);
-    quests = List.empty(growable: true);
   }
 
   /// Implement the logic for the character's death.

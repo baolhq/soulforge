@@ -1,1 +1,1 @@
-enum NpcRole { vendor, questGiver, trainer }
+enum NpcRole { vendor, questGiver, trainer, blacksmith }

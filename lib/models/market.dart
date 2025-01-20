@@ -4,16 +4,18 @@
 
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/item.dart';
-import 'package:soulforge/models/locations/location.dart';
 import 'package:soulforge/models/npcs/npc.dart';
 import 'package:soulforge/models/npcs/vendor.dart';
 
-class Market extends Location {
+class Market {
+  late String id;
+  final String name;
+  final String description;
   late List<NPC> npcs;
 
   Market({
-    required super.name,
-    required super.description,
+    required this.name,
+    required this.description,
   }) {
     npcs = List.empty(growable: true);
   }

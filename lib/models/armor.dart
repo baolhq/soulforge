@@ -8,7 +8,6 @@ class Armor extends Item {
   double durability;
   double baseUpgradePrice;
   int upgradeLevel;
-  bool isBroken;
 
   double physicalResistance;
   double magicResistance;
@@ -25,7 +24,6 @@ class Armor extends Item {
       this.durability = 100,
       this.baseUpgradePrice = 1,
       this.upgradeLevel = 0,
-      this.isBroken = false,
       this.physicalResistance = 0,
       this.magicResistance = 0,
       this.fireResistance = 0,

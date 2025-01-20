@@ -1,12 +1,10 @@
 enum EquipmentSlot {
   helm,
   torso,
-  gloves,
-  boots,
+  bracelets,
+  greaves,
   belt,
   amulet,
   leftRing,
   rightRing,
-  mainHand,
-  offHand
 }

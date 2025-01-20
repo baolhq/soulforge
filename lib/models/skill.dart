@@ -15,7 +15,7 @@ class Skill {
   bool isChargeable;
   bool isMultiTarget;
   bool isPiercing;
-  SkillType type;
+  SkillType skillType;
   late List<Status> statuses;
   late List<Skill> prerequisites;
 
@@ -30,7 +30,7 @@ class Skill {
       this.isChargeable = false,
       this.isMultiTarget = false,
       this.isPiercing = false,
-      this.type = SkillType.singleTarget}) {
+      this.skillType = SkillType.single}) {
     id = Uuid().v4();
     statuses = List.empty(growable: true);
     prerequisites = List.empty(growable: true);

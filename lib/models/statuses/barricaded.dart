@@ -24,8 +24,7 @@ class Barricaded extends Status {
   void update(Character target) {
     super.update(target);
 
-    var tempHP = target.maxHealth * 0.1;
-    target.temporaryHealth = tempHP.round();
+    target.temporaryHealth = target.maxHealth * 0.1;
   }
 
   @override

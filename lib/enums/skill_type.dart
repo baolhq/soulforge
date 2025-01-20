@@ -1,1 +1,1 @@
-enum SkillType { singleTarget, multiTarget, selfTargeted }
+enum SkillType { single, multiple, self }

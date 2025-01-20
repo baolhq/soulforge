@@ -13,7 +13,7 @@ void main() {
         name: "Longsword",
         description: "",
         basePrice: 100,
-        type: WeaponType.straighSword);
+        weaponType: WeaponType.sword);
 
     merchant.inventory.add(sword);
     merchant.sellItem(bob, sword);

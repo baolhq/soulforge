@@ -9,20 +9,20 @@ class Weapon extends Item {
   double damageMultiplier;
   double attackRatingMultiplier;
   double critChance;
-  int minDamage;
-  int maxDamage;
+  double minDamage;
+  double maxDamage;
   double baseUpgradePrice;
   int upgradeLevel;
-  final WeaponType type;
+  final WeaponType weaponType;
   late List<Status> statuses;
-  late List<Skill> skills;
   late List<Magic> magics;
+  late List<Skill> skills;
 
   Weapon({
     required super.name,
     required super.description,
     required super.basePrice,
-    required this.type,
+    required this.weaponType,
     this.weight = 1,
     this.damageMultiplier = 1,
     this.attackRatingMultiplier = 1,
@@ -33,7 +33,7 @@ class Weapon extends Item {
     this.upgradeLevel = 0,
   }) {
     statuses = List.empty(growable: true);
-    skills = List.empty(growable: true);
     magics = List.empty(growable: true);
+    skills = List.empty(growable: true);
   }
 }

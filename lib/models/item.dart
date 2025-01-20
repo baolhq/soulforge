@@ -13,7 +13,7 @@ class Item {
   String iconPath;
   bool isUsable;
   bool isQuestItem;
-  bool isCollectable;
+  bool isCollectible;
   bool canDrop;
   double dropRate;
   bool isRune;
@@ -33,7 +33,7 @@ class Item {
     this.iconPath = "",
     this.isUsable = false,
     this.isQuestItem = false,
-    this.isCollectable = true,
+    this.isCollectible = true,
     this.canDrop = false,
     this.dropRate = 1,
     this.isRune = false,

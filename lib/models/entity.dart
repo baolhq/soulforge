@@ -1,5 +1,4 @@
 import 'package:soulforge/enums/gender.dart';
-import 'package:soulforge/enums/race.dart';
 import 'package:soulforge/models/magic.dart';
 import 'package:soulforge/models/skill.dart';
 import 'package:soulforge/models/statuses/status.dart';
@@ -8,15 +7,15 @@ import 'package:uuid/uuid.dart';
 abstract class Entity {
   late String id;
   final String name;
-  int level;
-  int health;
-  int maxHealth;
-  int temporaryHealth;
-  int mana;
-  int maxMana;
-  Race race;
+  int currentLevel;
+  double health;
+  double maxHealth;
+  double temporaryHealth;
+  double mana;
+  double maxMana;
   Gender gender;
   String iconPath;
+  String raceId;
   String locationId;
   late List<Skill> skills;
   late List<Magic> magics;
@@ -51,21 +50,17 @@ abstract class Entity {
   double lightningResistance;
   double poisonResistance;
 
-  int row;
-  int col;
-  late List<List<Entity>> partyGrid;
-
   Entity(
       {required this.name,
-      this.level = 1,
+      this.currentLevel = 1,
       this.health = 100,
       this.maxHealth = 100,
       this.temporaryHealth = 0,
       this.mana = 100,
       this.maxMana = 100,
-      this.race = Race.human,
       this.gender = Gender.unknown,
       this.iconPath = "",
+      this.raceId = "",
       this.locationId = "",
       this.strength = 1,
       this.dexterity = 1,
@@ -92,14 +87,11 @@ abstract class Entity {
       this.fireResistance = 0,
       this.coldResistance = 0,
       this.lightningResistance = 0,
-      this.poisonResistance = 0,
-      this.row = 0,
-      this.col = 0}) {
+      this.poisonResistance = 0}) {
     id = Uuid().v4();
     skills = List.empty(growable: true);
     magics = List.empty(growable: true);
     statuses = List.empty(growable: true);
-    partyGrid = List.empty(growable: true);
   }
 
   void takeDamage(double damage) {
@@ -111,30 +103,4 @@ abstract class Entity {
   }
 
   void die() {}
-
-  List<Entity> getAdjacentEntities() {
-    List<Entity> adjacentEntities = [];
-    var adjacentOffset = [
-      [-1, 0], // Above
-      [1, 0], // Below
-      [0, -1], // Left
-      [0, 1], // Right
-    ];
-
-    for (var offset in adjacentOffset) {
-      int newRow = row + offset[0];
-      int newCol = col + offset[1];
-
-      // Check if the new position is within the grid bounds
-      if (newRow >= 0 &&
-          newRow < partyGrid.length &&
-          newCol >= 0 &&
-          newCol < partyGrid[0].length) {
-        var adjacentEntity = partyGrid[newRow][newCol];
-        adjacentEntities.add(adjacentEntity);
-      }
-    }
-
-    return adjacentEntities;
-  }
 }
