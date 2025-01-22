@@ -1,31 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
 class Hastened extends Status {
-  int initiativeInc = 5;
   int rechargeDec = 1;
 
   Hastened()
       : super(
-            name: "Hastened",
-            description: "The entity’s speed and reaction times are enhanced.",
-            savingThrow: SavingThrow.none,
-            type: StatusType.buff);
+          name: "Hastened",
+          description: "The entity’s speed and reaction times are enhanced.",
+          statusTypeId: 1,
+        );
 
   @override
   void activate(Character target) {
     super.activate(target);
 
     // Increase ininiative by 5 and reduce skill and magic cooldowns by 1
-    target.initiative += initiativeInc;
     for (var skill in target.skills) {
-      skill.recharge -= rechargeDec;
-    }
-    for (var magic in target.magics) {
-      magic.recharge -= rechargeDec;
+      if (skill.recharge != null) {
+        var recharge = skill.recharge!;
+        skill.recharge = recharge - rechargeDec;
+      }
     }
 
     // Hastened cannot be stacked
@@ -39,12 +35,11 @@ class Hastened extends Status {
     super.deactivate(target);
 
     // Restore initiative and recharge cooldowns
-    target.initiative -= initiativeInc;
     for (var skill in target.skills) {
-      skill.recharge += rechargeDec;
-    }
-    for (var magic in target.magics) {
-      magic.recharge += rechargeDec;
+      if (skill.recharge != null) {
+        var recharge = skill.recharge!;
+        skill.recharge = recharge + rechargeDec;
+      }
     }
 
     target.statuses.remove(this);

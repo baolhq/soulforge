@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -14,11 +12,11 @@ class Cursed extends Status {
 
   Cursed()
       : super(
-            name: "Confused",
+            name: "Cursed",
             description:
                 "A dark affliction weakens the entity’s abilities or increases their vulnerability.",
-            savingThrow: SavingThrow.wisdom,
-            type: StatusType.debuff);
+            statusTypeId: 3,
+            savingThrowId: 1);
 
   @override
   void activate(Character target) {

@@ -1,48 +1,41 @@
-import 'package:soulforge/enums/rarity.dart';
-import 'package:soulforge/enums/rune_type.dart';
-import 'package:uuid/uuid.dart';
-
 class Item {
-  late String id;
+  int? id;
   final String name;
-  final String description;
-  int levelRequirement;
+  final String? description;
+  int? levelRequirement;
   int quantity;
-  int maxQuantity;
+  int? maxQuantity;
+  double weight;
   double basePrice;
-  String iconPath;
+  String? iconPath;
   bool isUsable;
   bool isQuestItem;
   bool isCollectible;
   bool canDrop;
   double dropRate;
-  bool isRune;
-  RuneType runeType;
-  Rarity rarity;
-  String ownerId;
-  bool isCraftable;
+  int? runeId;
+  int rarityId;
+  int ownerId;
   late List<Item> craftingRecipe;
 
   Item({
     required this.name,
-    this.description = "",
-    this.levelRequirement = 0,
+    this.description,
+    this.levelRequirement,
     this.quantity = 0,
-    this.maxQuantity = 99,
+    this.maxQuantity,
+    this.weight = 0,
     this.basePrice = 0,
-    this.iconPath = "",
+    this.iconPath,
     this.isUsable = false,
     this.isQuestItem = false,
     this.isCollectible = true,
     this.canDrop = false,
     this.dropRate = 1,
-    this.isRune = false,
-    this.runeType = RuneType.none,
-    this.rarity = Rarity.common,
-    this.ownerId = "",
-    this.isCraftable = false,
+    this.runeId,
+    this.rarityId = 1,
+    this.ownerId = 1,
   }) {
-    id = Uuid().v4();
     craftingRecipe = List.empty(growable: true);
   }
 }

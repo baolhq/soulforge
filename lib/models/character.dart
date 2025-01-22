@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/class.dart';
 import 'package:soulforge/models/entity.dart';
 import 'package:soulforge/models/item.dart';
 import 'package:soulforge/models/npcs/vendor.dart';
@@ -10,19 +9,21 @@ class Character extends Entity {
   double experience;
   int gold;
   double discoveryRate;
+  bool isFainted;
   bool isRescued;
   late List<Item> inventory;
-  late List<Class> classes;
+  late List<int> classesId;
 
   Character(
       {required super.name,
-      this.expMultiplier = 1,
-      this.experience = 0,
+      this.expMultiplier = 1.0,
+      this.experience = 0.0,
       this.gold = 0,
-      this.discoveryRate = 1,
+      this.discoveryRate = 100.0,
+      this.isFainted = false,
       this.isRescued = false}) {
     inventory = List.empty(growable: true);
-    classes = List.empty(growable: true);
+    classesId = List.empty(growable: true);
   }
 
   /// Implement the logic for the character's death.

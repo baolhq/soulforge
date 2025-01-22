@@ -1,16 +1,8 @@
-import 'package:soulforge/enums/npc_role.dart';
-import 'package:uuid/uuid.dart';
-
 class NPC {
-  late String id;
-  String name;
-  String background;
-  NpcRole role;
+  final int? id;
+  final String name;
+  final String? background;
+  int npcRoleId;
 
-  NPC(
-      {required this.name,
-      required this.background,
-      this.role = NpcRole.vendor}) {
-    id = Uuid().v4();
-  }
+  NPC({required this.name, this.id, this.background, this.npcRoleId = 1});
 }

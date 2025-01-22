@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/npc_role.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/item.dart';
 import 'package:soulforge/models/npcs/npc.dart';
 
 class Vendor extends NPC {
-  late List<Item> inventory;
   int gold;
-  int bribeAmount = 0;
+  int bribeAmount;
   int maxBribeThreshold;
+  late List<Item> inventory;
 
   Vendor(
       {required super.name,
       required super.background,
-      super.role = NpcRole.vendor,
       this.gold = 100,
+      this.bribeAmount = 0,
       this.maxBribeThreshold = 100}) {
     inventory = List.empty(growable: true);
   }

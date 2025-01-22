@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -13,10 +11,10 @@ class Overcharged extends Status {
 
   Overcharged()
       : super(
-            name: "Overcharged",
-            description: "The entity’s magical energy is amplified with a cost",
-            savingThrow: SavingThrow.none,
-            type: StatusType.neutral);
+          name: "Overcharged",
+          description: "The entity’s magical energy is amplified with a cost",
+          statusTypeId: 2,
+        );
 
   @override
   void activate(Character target) {

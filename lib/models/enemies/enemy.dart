@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:soulforge/models/entity.dart';
 
 class Enemy extends Entity {
-  final String description;
-  int experience;
+  final String? description;
+  double experience;
   int gold;
-  String treasureClassId;
+  int treasureClassId;
 
   Enemy(
       {required super.name,
-      required this.description,
-      this.experience = 1,
+      this.description,
+      this.experience = 1.0,
       this.gold = 1,
-      this.treasureClassId = ""});
+      this.treasureClassId = 1});
 
   /// Implement logic for enemy on slain
   @override

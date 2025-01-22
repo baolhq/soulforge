@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -10,8 +8,8 @@ class Petrified extends Status {
             name: "Petrified",
             description:
                 "The entity is turned to stone, completely immobilizing them and halting any actions.",
-            savingThrow: SavingThrow.charisma,
-            type: StatusType.debuff);
+            statusTypeId: 3,
+            savingThrowId: 1);
 
   @override
   void activate(Character target) {

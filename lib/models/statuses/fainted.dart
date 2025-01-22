@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -12,8 +10,8 @@ class Fainted extends Status {
             name: "Fainted",
             description:
                 "The character has fainted and will die after 3 turns unless rescued.",
-            type: StatusType.debuff,
-            savingThrow: SavingThrow.constitution,
+            statusTypeId: 3,
+            savingThrowId: 1,
             duration: faintedDuration);
 
   @override
@@ -30,7 +28,7 @@ class Fainted extends Status {
   void update(Character target) {
     super.update(target);
 
-    if (duration <= 0) {
+    if (duration! <= 0) {
       if (!target.isRescued) {
         target.die();
       }

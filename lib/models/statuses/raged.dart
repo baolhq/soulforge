@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -9,11 +7,11 @@ class Raged extends Status {
 
   Raged()
       : super(
-            name: "Raged",
-            description:
-                "The entity is overwhelmed by fury, enhancing their physical prowess but reducing control.",
-            savingThrow: SavingThrow.none,
-            type: StatusType.neutral);
+          name: "Raged",
+          description:
+              "The entity is overwhelmed by fury, enhancing their physical prowess but reducing control.",
+          statusTypeId: 2,
+        );
 
   @override
   void activate(Character target) {

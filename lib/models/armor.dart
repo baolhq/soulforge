@@ -4,10 +4,10 @@ import 'package:soulforge/enums/damage_type.dart';
 import 'package:soulforge/models/item.dart';
 
 class Armor extends Item {
-  double weight;
   double durability;
   double baseUpgradePrice;
   int upgradeLevel;
+  int equipmentSlotId;
 
   double physicalResistance;
   double magicResistance;
@@ -18,11 +18,11 @@ class Armor extends Item {
 
   Armor(
       {required super.name,
-      required super.description,
       required super.basePrice,
-      this.weight = 1,
-      this.durability = 100,
-      this.baseUpgradePrice = 1,
+      required this.baseUpgradePrice,
+      super.description,
+      this.equipmentSlotId = 1,
+      this.durability = 100.0,
       this.upgradeLevel = 0,
       this.physicalResistance = 0,
       this.magicResistance = 0,

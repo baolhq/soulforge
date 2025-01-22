@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -10,8 +8,8 @@ class Paralyzed extends Status {
             name: "Paralyzed",
             description:
                 "The entity's body is immobilized, rendering them unable to move or act. Remove upon receiving damage.",
-            savingThrow: SavingThrow.dexterity,
-            type: StatusType.debuff);
+            statusTypeId: 3,
+            savingThrowId: 1);
 
   @override
   void activate(Character target) {

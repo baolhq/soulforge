@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -12,11 +10,11 @@ class Etheral extends Status {
 
   Etheral()
       : super(
-            name: "Etheral",
-            description:
-                "The entity temporarily shifts into a semi-intangible state.",
-            savingThrow: SavingThrow.none,
-            type: StatusType.neutral);
+          name: "Etheral",
+          description:
+              "The entity temporarily shifts into a semi-intangible state.",
+          statusTypeId: 2,
+        );
 
   @override
   void activate(Character target) {

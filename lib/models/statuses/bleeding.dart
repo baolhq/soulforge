@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -12,8 +10,8 @@ class Bleeding extends Status {
             name: "Bleeding",
             description:
                 "The entity suffers continuous damage over time due to open wounds. Becomes vulnerable to physical damage.",
-            savingThrow: SavingThrow.wisdom,
-            type: StatusType.debuff);
+            statusTypeId: 3,
+            savingThrowId: 1);
 
   @override
   void activate(Character target) {

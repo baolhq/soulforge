@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -10,8 +8,9 @@ class Ablaze extends Status {
             name: "Ablaze",
             description:
                 "The creature is engulfed in flames, suffering intense fire damage over time. Have a chance to spead to nearby allies",
-            savingThrow: SavingThrow.intelligence,
-            type: StatusType.debuff);
+            statusTypeId: 3,
+            savingThrowId: 1,
+            duration: 3);
 
   @override
   void activate(Character target) {

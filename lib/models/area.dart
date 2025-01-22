@@ -1,11 +1,7 @@
-import 'package:uuid/uuid.dart';
-
 class Area {
-  late String id;
+  final int? id;
   final String name;
-  final String description;
+  final String? description;
 
-  Area({required this.name, required this.description}) {
-    id = Uuid().v4();
-  }
+  Area({required this.name, this.id, this.description});
 }

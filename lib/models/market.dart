@@ -8,14 +8,15 @@ import 'package:soulforge/models/npcs/npc.dart';
 import 'package:soulforge/models/npcs/vendor.dart';
 
 class Market {
-  late String id;
+  final int? id;
   final String name;
-  final String description;
+  final String? description;
   late List<NPC> npcs;
 
   Market({
     required this.name,
-    required this.description,
+    this.id,
+    this.description,
   }) {
     npcs = List.empty(growable: true);
   }

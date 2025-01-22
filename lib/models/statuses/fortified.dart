@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -14,11 +12,11 @@ class Fortified extends Status {
 
   Fortified()
       : super(
-            name: "Fortified",
-            description:
-                "The entity’s defenses are bolstered, making them more resilient to damage.",
-            savingThrow: SavingThrow.none,
-            type: StatusType.buff);
+          name: "Fortified",
+          description:
+              "The entity’s defenses are bolstered, making them more resilient to damage.",
+          statusTypeId: 1,
+        );
 
   @override
   void activate(Character target) {

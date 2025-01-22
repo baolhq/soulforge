@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -12,8 +10,7 @@ class Enlightened extends Status {
             name: "Enlightened",
             description:
                 "The entity is surrounded by a protective barrier that regenerates temporary hit points each turn.",
-            savingThrow: SavingThrow.none,
-            type: StatusType.buff);
+            statusTypeId: 1);
 
   @override
   void activate(Character target) {

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -10,8 +8,8 @@ class Burned extends Status {
             name: "Burned",
             description:
                 "The entity is scorched, taking heat damage over time.",
-            savingThrow: SavingThrow.intelligence,
-            type: StatusType.debuff);
+            statusTypeId: 3,
+            savingThrowId: 1);
 
   @override
   void update(Character target) {

@@ -1,11 +1,7 @@
-import 'package:uuid/uuid.dart';
-
 class Race {
-  late String id;
+  final int? id;
   final String name;
-  final String description;
+  final String? description;
 
-  Race({required this.name, required this.description}) {
-    id = Uuid().v4();
-  }
+  Race({required this.name, this.id, this.description});
 }

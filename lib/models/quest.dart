@@ -1,26 +1,23 @@
-import 'package:soulforge/enums/quest_type.dart';
-import 'package:uuid/uuid.dart';
-
 class Quest {
-  late String id;
+  final int? id;
   final String name;
-  final String description;
-  QuestType questType;
+  final String? description;
   late DateTime dueDate;
   bool isCompleted;
   bool isActive;
   bool isRepeatable;
   int progress;
+  int questTypeId;
 
   Quest(
       {required this.name,
-      required this.description,
-      this.questType = QuestType.story,
+      this.id,
+      this.description,
       this.isCompleted = false,
       this.isActive = false,
       this.isRepeatable = false,
-      this.progress = 0}) {
-    id = Uuid().v4();
+      this.progress = 0,
+      this.questTypeId = 1}) {
     dueDate = DateTime(0);
   }
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -13,8 +11,8 @@ class Blinded extends Status {
             name: "Blinded",
             description:
                 "The entity's vision is obscured, severely impacting their accuracy and alacrity.",
-            savingThrow: SavingThrow.intelligence,
-            type: StatusType.debuff);
+            statusTypeId: 3,
+            savingThrowId: 1);
 
   @override
   void activate(Character target) {

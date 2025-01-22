@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:soulforge/enums/weapon_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/item.dart';
 import 'package:soulforge/models/npcs/vendor.dart';
@@ -13,7 +12,8 @@ void main() {
         name: "Longsword",
         description: "",
         basePrice: 100,
-        weaponType: WeaponType.sword);
+        baseUpgradePrice: 100,
+        weaponTypeId: 1);
 
     merchant.inventory.add(sword);
     merchant.sellItem(bob, sword);

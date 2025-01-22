@@ -1,16 +1,14 @@
 import 'dart:math';
 
 import 'package:soulforge/models/item.dart';
-import 'package:uuid/uuid.dart';
 
 class TreasureClass {
-  late String id;
+  final int? id;
   final int tier;
   double totalDropRate;
   late List<Item> items;
 
-  TreasureClass({this.tier = 0, this.totalDropRate = 0}) {
-    id = Uuid().v4();
+  TreasureClass({this.tier = 0, this.id, this.totalDropRate = 0}) {
     items = List.empty(growable: true);
   }
 

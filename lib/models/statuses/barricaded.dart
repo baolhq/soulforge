@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
 class Barricaded extends Status {
   Barricaded()
       : super(
-            name: "Barricaded",
-            description:
-                "The entity is surrounded by a protective barrier that regenerates temporary hit points each turn.",
-            savingThrow: SavingThrow.none,
-            type: StatusType.buff);
+          name: "Barricaded",
+          description:
+              "The entity is surrounded by a protective barrier that regenerates temporary hit points each turn.",
+          statusTypeId: 1,
+        );
 
   @override
   void activate(Character target) {

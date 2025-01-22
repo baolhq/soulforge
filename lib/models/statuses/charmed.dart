@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -10,8 +8,8 @@ class Charmed extends Status {
             name: "Charmed",
             description:
                 "The entity is mentally influenced to see the caster as an ally. Prevents hostile actions against the caster.",
-            savingThrow: SavingThrow.charisma,
-            type: StatusType.debuff);
+            statusTypeId: 3,
+            savingThrowId: 1);
 
   @override
   void activate(Character target) {

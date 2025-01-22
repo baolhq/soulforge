@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/enums/saving_throw.dart';
-import 'package:soulforge/enums/status_type.dart';
 import 'package:soulforge/models/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
@@ -13,8 +11,8 @@ class Poisoned extends Status {
             name: "Poisoned",
             description:
                 "The entity is afflicted by toxic substances, causing progressive health deterioration.",
-            savingThrow: SavingThrow.intelligence,
-            type: StatusType.debuff);
+            statusTypeId: 3,
+            savingThrowId: 1);
 
   @override
   void update(Character target) {
