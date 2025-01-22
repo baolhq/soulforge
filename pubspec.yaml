@@ -14,7 +14,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
-  sqlite3: ^2.6.1
+  sqlite3: ^2.7.2
 
 dev_dependencies:
   flutter_test:
