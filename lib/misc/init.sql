@@ -249,6 +249,7 @@ CREATE TABLE IF NOT EXISTS vendor_items (
 CREATE TABLE IF NOT EXISTS races (
 	id 				INTEGER PRIMARY KEY AUTOINCREMENT,
 	name 				TEXT UNIQUE NOT NULL,
+	perk				TEXT,
 	description 	TEXT
 );
 

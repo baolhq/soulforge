@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:soulforge/screens/welcome.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:soulforge/helpers/database.dart';
+import 'package:soulforge/screens/creation.dart';
 
-void main() {
-  runApp(const MainApp());
+void main() async {
+  // runApp(const MainApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final database = Database();
+
+  await database.into(database.areas).insert(AreasCompanion.insert(
+        name: "Somewhere",
+      ));
+  List<Area> allItems = await database.select(database.areas).get();
+
+  debugPrint('items in database: $allItems');
 }
 
 class MainApp extends StatelessWidget {
@@ -11,10 +23,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-        body: WelcomeScreen(),
+        body: CreationScreen(),
       ),
+      theme: ThemeData(textTheme: GoogleFonts.bitterTextTheme()),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,

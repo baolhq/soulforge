@@ -1,7 +1,7 @@
-class Area {
-  final int? id;
-  final String name;
-  final String? description;
+import 'package:drift/drift.dart';
 
-  Area({required this.name, this.id, this.description});
+class Areas extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get name => text()();
+  TextColumn get description => text().nullable()();
 }

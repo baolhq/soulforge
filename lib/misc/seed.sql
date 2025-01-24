@@ -2,16 +2,16 @@
 --	            Races             --
 -----------------------------------
 -- Insert Playable Races
-INSERT INTO races (name, description) VALUES
-('Human', 'A versatile and adaptable race, known for their balance in all attributes.'),
-('High Elf', 'Graceful and intelligent beings, skilled in magic and archery.'),
-('Wood Elf', 'A magical and nature-bound race, known for their mastery of arcane arts and harmony with the forest.'),
-('Dark Elf', 'They are respected as skilled combatants, known for their stealth, agility, and mastery of dark magic and weapons.'),
-('Dwarf', 'Sturdy and strong, with a deep connection to the earth and mastery in crafting.'),
-('Orc', 'A warrior race, fierce and strong, with a deep bond to nature and battle.'),
-('Halfling', 'Small and nimble, known for their stealth and agility, often skilled in thievery.'),
-('Tiefling', 'A race with infernal heritage, often shunned, but gifted with dark powers and an affinity for magic.'),
-('Vampire', 'Undead beings that thrive on blood, known for their immortality, charm, and formidable combat skills.');
+INSERT INTO races (name, perk, description) VALUES
+('Human', '+1 Starting attribute point', 'A versatile and adaptable race, known for their balance in all attributes.'),
+('High Elf', '+1 Intelligence', 'Graceful and intelligent beings, skilled in magic and archery.'),
+('Wood Elf', '+1 Wisdom', 'A magical and nature-bound race, known for their mastery of arcane arts and harmony with the forest.'),
+('Dark Elf', '+1 Dexterity', 'They are respected as skilled combatants, known for their stealth, agility, and mastery of dark magic and weapons.'),
+('Dwarf', '+1 Constitution', 'Sturdy and strong, with a deep connection to the earth and mastery in crafting.'),
+('Orc', '+1 Strength', 'A warrior race, fierce and strong, with a deep bond to nature and battle.'),
+('Halfling', '+1 Luck', 'Small and nimble, known for their stealth and agility, often skilled in thievery.'),
+('Tiefling', '+1 Charisma', 'A race with infernal heritage, often shunned, but gifted with dark powers and an affinity for magic.'),
+('Vampire', '+1 Charisma', 'Undead beings that thrive on blood, known for their immortality, charm, and formidable combat skills.');
 
 -- Insert Mob Races
 INSERT INTO races (name, description) VALUES
