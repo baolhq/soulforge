@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:soulforge/helpers/database.dart';
 
-part '../races.g.dart';
+part 'races.g.dart';
 
 class Races extends Table {
   IntColumn get id => integer().autoIncrement()();

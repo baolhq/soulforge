@@ -4,7 +4,7 @@
 
 import 'package:soulforge/models/entities/character.dart';
 import 'package:soulforge/models/items/item.dart';
-import 'package:soulforge/models/quest.dart';
+import 'package:soulforge/models/quests/quest.dart';
 
 class Tavern {
   final int? id;

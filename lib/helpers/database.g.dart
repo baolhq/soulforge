@@ -482,16 +482,277 @@ class RacesCompanion extends UpdateCompanion<Race> {
   }
 }
 
+class $EventLogsTable extends EventLogs
+    with TableInfo<$EventLogsTable, EventLog> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $EventLogsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumn<String> type = GeneratedColumn<String>(
+      'type', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _detailsMeta =
+      const VerificationMeta('details');
+  @override
+  late final GeneratedColumn<String> details = GeneratedColumn<String>(
+      'details', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _timestampMeta =
+      const VerificationMeta('timestamp');
+  @override
+  late final GeneratedColumn<DateTime> timestamp = GeneratedColumn<DateTime>(
+      'timestamp', aliasedName, false,
+      type: DriftSqlType.dateTime,
+      requiredDuringInsert: false,
+      defaultValue: Constant(DateTime.now()));
+  @override
+  List<GeneratedColumn> get $columns => [id, type, details, timestamp];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'event_logs';
+  @override
+  VerificationContext validateIntegrity(Insertable<EventLog> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('type')) {
+      context.handle(
+          _typeMeta, type.isAcceptableOrUnknown(data['type']!, _typeMeta));
+    } else if (isInserting) {
+      context.missing(_typeMeta);
+    }
+    if (data.containsKey('details')) {
+      context.handle(_detailsMeta,
+          details.isAcceptableOrUnknown(data['details']!, _detailsMeta));
+    }
+    if (data.containsKey('timestamp')) {
+      context.handle(_timestampMeta,
+          timestamp.isAcceptableOrUnknown(data['timestamp']!, _timestampMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  EventLog map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return EventLog(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      type: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}type'])!,
+      details: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}details']),
+      timestamp: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}timestamp'])!,
+    );
+  }
+
+  @override
+  $EventLogsTable createAlias(String alias) {
+    return $EventLogsTable(attachedDatabase, alias);
+  }
+}
+
+class EventLog extends DataClass implements Insertable<EventLog> {
+  final int id;
+  final String type;
+  final String? details;
+  final DateTime timestamp;
+  const EventLog(
+      {required this.id,
+      required this.type,
+      this.details,
+      required this.timestamp});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['type'] = Variable<String>(type);
+    if (!nullToAbsent || details != null) {
+      map['details'] = Variable<String>(details);
+    }
+    map['timestamp'] = Variable<DateTime>(timestamp);
+    return map;
+  }
+
+  EventLogsCompanion toCompanion(bool nullToAbsent) {
+    return EventLogsCompanion(
+      id: Value(id),
+      type: Value(type),
+      details: details == null && nullToAbsent
+          ? const Value.absent()
+          : Value(details),
+      timestamp: Value(timestamp),
+    );
+  }
+
+  factory EventLog.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return EventLog(
+      id: serializer.fromJson<int>(json['id']),
+      type: serializer.fromJson<String>(json['type']),
+      details: serializer.fromJson<String?>(json['details']),
+      timestamp: serializer.fromJson<DateTime>(json['timestamp']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'type': serializer.toJson<String>(type),
+      'details': serializer.toJson<String?>(details),
+      'timestamp': serializer.toJson<DateTime>(timestamp),
+    };
+  }
+
+  EventLog copyWith(
+          {int? id,
+          String? type,
+          Value<String?> details = const Value.absent(),
+          DateTime? timestamp}) =>
+      EventLog(
+        id: id ?? this.id,
+        type: type ?? this.type,
+        details: details.present ? details.value : this.details,
+        timestamp: timestamp ?? this.timestamp,
+      );
+  EventLog copyWithCompanion(EventLogsCompanion data) {
+    return EventLog(
+      id: data.id.present ? data.id.value : this.id,
+      type: data.type.present ? data.type.value : this.type,
+      details: data.details.present ? data.details.value : this.details,
+      timestamp: data.timestamp.present ? data.timestamp.value : this.timestamp,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('EventLog(')
+          ..write('id: $id, ')
+          ..write('type: $type, ')
+          ..write('details: $details, ')
+          ..write('timestamp: $timestamp')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, type, details, timestamp);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is EventLog &&
+          other.id == this.id &&
+          other.type == this.type &&
+          other.details == this.details &&
+          other.timestamp == this.timestamp);
+}
+
+class EventLogsCompanion extends UpdateCompanion<EventLog> {
+  final Value<int> id;
+  final Value<String> type;
+  final Value<String?> details;
+  final Value<DateTime> timestamp;
+  const EventLogsCompanion({
+    this.id = const Value.absent(),
+    this.type = const Value.absent(),
+    this.details = const Value.absent(),
+    this.timestamp = const Value.absent(),
+  });
+  EventLogsCompanion.insert({
+    this.id = const Value.absent(),
+    required String type,
+    this.details = const Value.absent(),
+    this.timestamp = const Value.absent(),
+  }) : type = Value(type);
+  static Insertable<EventLog> custom({
+    Expression<int>? id,
+    Expression<String>? type,
+    Expression<String>? details,
+    Expression<DateTime>? timestamp,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (type != null) 'type': type,
+      if (details != null) 'details': details,
+      if (timestamp != null) 'timestamp': timestamp,
+    });
+  }
+
+  EventLogsCompanion copyWith(
+      {Value<int>? id,
+      Value<String>? type,
+      Value<String?>? details,
+      Value<DateTime>? timestamp}) {
+    return EventLogsCompanion(
+      id: id ?? this.id,
+      type: type ?? this.type,
+      details: details ?? this.details,
+      timestamp: timestamp ?? this.timestamp,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (type.present) {
+      map['type'] = Variable<String>(type.value);
+    }
+    if (details.present) {
+      map['details'] = Variable<String>(details.value);
+    }
+    if (timestamp.present) {
+      map['timestamp'] = Variable<DateTime>(timestamp.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('EventLogsCompanion(')
+          ..write('id: $id, ')
+          ..write('type: $type, ')
+          ..write('details: $details, ')
+          ..write('timestamp: $timestamp')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$Database extends GeneratedDatabase {
   _$Database(QueryExecutor e) : super(e);
   $DatabaseManager get managers => $DatabaseManager(this);
   late final $AreasTable areas = $AreasTable(this);
   late final $RacesTable races = $RacesTable(this);
+  late final $EventLogsTable eventLogs = $EventLogsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [areas, races];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [areas, races, eventLogs];
 }
 
 typedef $$AreasTableCreateCompanionBuilder = AreasCompanion Function({
@@ -761,6 +1022,150 @@ typedef $$RacesTableProcessedTableManager = ProcessedTableManager<
     (Race, BaseReferences<_$Database, $RacesTable, Race>),
     Race,
     PrefetchHooks Function()>;
+typedef $$EventLogsTableCreateCompanionBuilder = EventLogsCompanion Function({
+  Value<int> id,
+  required String type,
+  Value<String?> details,
+  Value<DateTime> timestamp,
+});
+typedef $$EventLogsTableUpdateCompanionBuilder = EventLogsCompanion Function({
+  Value<int> id,
+  Value<String> type,
+  Value<String?> details,
+  Value<DateTime> timestamp,
+});
+
+class $$EventLogsTableFilterComposer
+    extends Composer<_$Database, $EventLogsTable> {
+  $$EventLogsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get type => $composableBuilder(
+      column: $table.type, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get details => $composableBuilder(
+      column: $table.details, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get timestamp => $composableBuilder(
+      column: $table.timestamp, builder: (column) => ColumnFilters(column));
+}
+
+class $$EventLogsTableOrderingComposer
+    extends Composer<_$Database, $EventLogsTable> {
+  $$EventLogsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get type => $composableBuilder(
+      column: $table.type, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get details => $composableBuilder(
+      column: $table.details, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get timestamp => $composableBuilder(
+      column: $table.timestamp, builder: (column) => ColumnOrderings(column));
+}
+
+class $$EventLogsTableAnnotationComposer
+    extends Composer<_$Database, $EventLogsTable> {
+  $$EventLogsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<String> get details =>
+      $composableBuilder(column: $table.details, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get timestamp =>
+      $composableBuilder(column: $table.timestamp, builder: (column) => column);
+}
+
+class $$EventLogsTableTableManager extends RootTableManager<
+    _$Database,
+    $EventLogsTable,
+    EventLog,
+    $$EventLogsTableFilterComposer,
+    $$EventLogsTableOrderingComposer,
+    $$EventLogsTableAnnotationComposer,
+    $$EventLogsTableCreateCompanionBuilder,
+    $$EventLogsTableUpdateCompanionBuilder,
+    (EventLog, BaseReferences<_$Database, $EventLogsTable, EventLog>),
+    EventLog,
+    PrefetchHooks Function()> {
+  $$EventLogsTableTableManager(_$Database db, $EventLogsTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$EventLogsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$EventLogsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$EventLogsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<String> type = const Value.absent(),
+            Value<String?> details = const Value.absent(),
+            Value<DateTime> timestamp = const Value.absent(),
+          }) =>
+              EventLogsCompanion(
+            id: id,
+            type: type,
+            details: details,
+            timestamp: timestamp,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            required String type,
+            Value<String?> details = const Value.absent(),
+            Value<DateTime> timestamp = const Value.absent(),
+          }) =>
+              EventLogsCompanion.insert(
+            id: id,
+            type: type,
+            details: details,
+            timestamp: timestamp,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$EventLogsTableProcessedTableManager = ProcessedTableManager<
+    _$Database,
+    $EventLogsTable,
+    EventLog,
+    $$EventLogsTableFilterComposer,
+    $$EventLogsTableOrderingComposer,
+    $$EventLogsTableAnnotationComposer,
+    $$EventLogsTableCreateCompanionBuilder,
+    $$EventLogsTableUpdateCompanionBuilder,
+    (EventLog, BaseReferences<_$Database, $EventLogsTable, EventLog>),
+    EventLog,
+    PrefetchHooks Function()>;
 
 class $DatabaseManager {
   final _$Database _db;
@@ -769,4 +1174,6 @@ class $DatabaseManager {
       $$AreasTableTableManager(_db, _db.areas);
   $$RacesTableTableManager get races =>
       $$RacesTableTableManager(_db, _db.races);
+  $$EventLogsTableTableManager get eventLogs =>
+      $$EventLogsTableTableManager(_db, _db.eventLogs);
 }

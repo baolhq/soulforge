@@ -8,10 +8,11 @@ import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:soulforge/models/areas/area.dart';
 import 'package:soulforge/models/entities/races.dart';
+import 'package:soulforge/models/telemetries/event_logs.dart';
 
 part 'database.g.dart';
 
-@DriftDatabase(tables: [Areas, Races])
+@DriftDatabase(tables: [Areas, Races, EventLogs])
 class Database extends _$Database {
   Database([QueryExecutor? e])
       : super(e ??
