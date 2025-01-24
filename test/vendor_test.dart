@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:soulforge/models/character.dart';
-import 'package:soulforge/models/item.dart';
+import 'package:soulforge/models/entities/character.dart';
+import 'package:soulforge/models/items/item.dart';
 import 'package:soulforge/models/npcs/vendor.dart';
-import 'package:soulforge/models/weapon.dart';
+import 'package:soulforge/models/equipments/weapon.dart';
 
 void main() {
   test("Bob's gold should be 155", () {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/models/character.dart';
-import 'package:soulforge/models/item.dart';
+import 'package:soulforge/models/entities/character.dart';
+import 'package:soulforge/models/items/item.dart';
 import 'package:soulforge/models/npcs/npc.dart';
 
 class Vendor extends NPC {

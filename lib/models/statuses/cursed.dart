@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/models/character.dart';
+import 'package:soulforge/models/entities/character.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
 class Cursed extends Status {

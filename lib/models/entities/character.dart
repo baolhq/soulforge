@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/models/entity.dart';
-import 'package:soulforge/models/item.dart';
+import 'package:soulforge/models/entities/entity.dart';
+import 'package:soulforge/models/items/item.dart';
 import 'package:soulforge/models/npcs/vendor.dart';
 import 'package:soulforge/models/statuses/fainted.dart';
 

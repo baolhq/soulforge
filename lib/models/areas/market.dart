@@ -2,8 +2,8 @@
 //
 // Focuses on buying and selling items with multiple vendors.
 
-import 'package:soulforge/models/character.dart';
-import 'package:soulforge/models/item.dart';
+import 'package:soulforge/models/entities/character.dart';
+import 'package:soulforge/models/items/item.dart';
 import 'package:soulforge/models/npcs/npc.dart';
 import 'package:soulforge/models/npcs/vendor.dart';
 

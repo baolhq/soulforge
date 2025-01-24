@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:soulforge/models/item.dart';
-import 'package:soulforge/models/treasure_class.dart';
+import 'package:soulforge/models/items/item.dart';
+import 'package:soulforge/models/entities/treasure_class.dart';
 
 void main() {
   test('Treasure class items size should be increased', () {

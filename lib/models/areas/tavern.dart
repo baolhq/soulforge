@@ -2,8 +2,8 @@
 //
 // Focuses on recruiting party members and finding quests.
 
-import 'package:soulforge/models/character.dart';
-import 'package:soulforge/models/item.dart';
+import 'package:soulforge/models/entities/character.dart';
+import 'package:soulforge/models/items/item.dart';
 import 'package:soulforge/models/quest.dart';
 
 class Tavern {

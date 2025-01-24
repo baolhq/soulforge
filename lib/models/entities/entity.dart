@@ -1,4 +1,4 @@
-import 'package:soulforge/models/skill.dart';
+import 'package:soulforge/models/entities/skill.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
 abstract class Entity {

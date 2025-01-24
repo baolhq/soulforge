@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:soulforge/helpers/database.dart';
+import 'package:soulforge/models/entities/races.dart';
 
 class CreationScreen extends StatefulWidget {
   const CreationScreen({super.key});
@@ -9,11 +11,31 @@ class CreationScreen extends StatefulWidget {
 
 class _CreationScreenState extends State<CreationScreen> {
   final TextEditingController _nameController = TextEditingController();
-  late Future<List<Map<String, dynamic>>> _racesFuture;
+  late Future<List<Race>> _racesFuture;
   int _selectedAvatarIndex = 0;
   int _selectedRaceIndex = 0;
 
+  final Database _db = Database();
+  late final RaceDao _raceDao = RaceDao(_db);
+
+  @override
+  void initState() {
+    super.initState();
+    _racesFuture = _initializeData();
+  }
+
+  Future<List<Race>> _initializeData() async {
+    await _db.seedRaces();
+    return _raceDao.getAllRaces();
+  }
+
   final List<String> avatars = [
+    'Avatar 1',
+    'Avatar 2',
+    'Avatar 3',
+    'Avatar 1',
+    'Avatar 2',
+    'Avatar 3',
     'Avatar 1',
     'Avatar 2',
     'Avatar 3',
@@ -53,7 +75,7 @@ class _CreationScreenState extends State<CreationScreen> {
           children: [
             // Avatar Selection
             SizedBox(
-              height: 100, // Adjusted height for smaller avatars
+              height: 100,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: avatars.length,
@@ -64,7 +86,7 @@ class _CreationScreenState extends State<CreationScreen> {
                     child: Column(
                       children: [
                         Container(
-                          width: 60, // Smaller size for avatars
+                          width: 60,
                           height: 60,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
@@ -121,7 +143,7 @@ class _CreationScreenState extends State<CreationScreen> {
 
             // Race Selection with FutureBuilder
             Expanded(
-              child: FutureBuilder<List<Map<String, dynamic>>>(
+              child: FutureBuilder<List<Race>>(
                 future: _racesFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -133,27 +155,23 @@ class _CreationScreenState extends State<CreationScreen> {
                   } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                     return Center(child: Text('No races found.'));
                   } else {
-                    final races = snapshot.data!;
+                    final races = snapshot.data ?? [];
                     return ListView.builder(
                       itemCount: races.length,
                       itemBuilder: (context, index) {
                         final race = races[index];
                         return ListTile(
                           leading: Icon(Icons.person),
-                          title: Text(race['name']!),
+                          title: Text(race.name),
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                race['description']!,
-                              ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                              Text(
-                                'Perk: ${race['perk']}',
+                                'Perk: ${race.perk}',
                                 style: TextStyle(fontSize: 12.0),
                               ),
+                              SizedBox(height: 4),
+                              Text(race.description ?? ''),
                             ],
                           ),
                           isThreeLine: true,
@@ -181,7 +199,7 @@ class _CreationScreenState extends State<CreationScreen> {
 
                 _racesFuture.then((races) {
                   final selectedAvatar = avatars[_selectedAvatarIndex];
-                  final selectedRace = races[_selectedRaceIndex]['name'];
+                  final selectedRace = races[_selectedRaceIndex].name;
                   final characterName = _nameController.text;
 
                   debugPrint(

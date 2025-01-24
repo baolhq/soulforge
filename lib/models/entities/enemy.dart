@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/models/entity.dart';
+import 'package:soulforge/models/entities/entity.dart';
 
 class Enemy extends Entity {
   final String? description;

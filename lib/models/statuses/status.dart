@@ -1,4 +1,4 @@
-import 'package:soulforge/models/character.dart';
+import 'package:soulforge/models/entities/character.dart';
 
 class Status {
   final int? id;

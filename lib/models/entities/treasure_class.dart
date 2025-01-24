@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:soulforge/models/item.dart';
+import 'package:soulforge/models/items/item.dart';
 
 class TreasureClass {
   final int? id;

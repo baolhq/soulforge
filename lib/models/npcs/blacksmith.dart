@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:soulforge/models/armor.dart';
-import 'package:soulforge/models/character.dart';
-import 'package:soulforge/models/item.dart';
+import 'package:soulforge/models/equipments/armor.dart';
+import 'package:soulforge/models/entities/character.dart';
+import 'package:soulforge/models/items/item.dart';
 import 'package:soulforge/models/npcs/npc.dart';
-import 'package:soulforge/models/weapon.dart';
+import 'package:soulforge/models/equipments/weapon.dart';
 
 class Blacksmith extends NPC {
   Blacksmith(String name, String background)

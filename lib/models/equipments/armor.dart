@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:soulforge/enums/damage_type.dart';
-import 'package:soulforge/models/item.dart';
+import 'package:soulforge/models/items/item.dart';
 
 class Armor extends Item {
   double durability;

@@ -1,5 +1,5 @@
-import 'package:soulforge/models/item.dart';
-import 'package:soulforge/models/skill.dart';
+import 'package:soulforge/models/items/item.dart';
+import 'package:soulforge/models/entities/skill.dart';
 import 'package:soulforge/models/statuses/status.dart';
 
 class Weapon extends Item {
