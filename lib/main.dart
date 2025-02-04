@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:soulforge/screens/creation.dart';
+import 'package:soulforge/screens/town.dart';
 import 'package:soulforge/screens/welcome.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const WelcomeScreen(),
+      home: const TownScreen(),
       theme: ThemeData(fontFamily: "Bitter"),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soulforge/screens/town.dart';
 
 class DistributionScreen extends StatefulWidget {
   final String characterName;
@@ -87,9 +88,14 @@ class _DistributionScreenState extends State<DistributionScreen> {
                 SizedBox(height: 24),
 
                 // Remaining Points Display
-                Text(
-                  "Remaining Points: $remainingPoints",
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                Tooltip(
+                  message:
+                      "You need to spend all attribute points before continue",
+                  triggerMode: TooltipTriggerMode.longPress,
+                  child: Text(
+                    "Remaining Points: $remainingPoints",
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
                 ),
                 SizedBox(height: 12),
 
@@ -150,11 +156,13 @@ class _DistributionScreenState extends State<DistributionScreen> {
             left: 16,
             right: 16,
             child: ElevatedButton(
-              onPressed: remainingPoints == 0
-                  ? () {
-                      debugPrint("Stats confirmed!");
-                    }
-                  : null,
+              onPressed: () {
+                if (remainingPoints == 0) {
+                  debugPrint("Stat distributed");
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => TownScreen()));
+                }
+              },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 40),
               ),
