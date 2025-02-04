@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:soulforge/screens/creation.dart';
 
 const text = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis nunc semper, ultrices risus sed, luctus orci. Aenean accumsan iaculis nunc ac mattis. Nullam scelerisque, orci non suscipit faucibus, tellus dui rutrum elit, vel finibus nunc enim at urna. Fusce blandit auctor maximus. Etiam tincidunt aliquet blandit. Sed gravida nulla quis purus tempor tempus. Fusce eget hendrerit ante, ut elementum tortor. Nunc eu purus iaculis, euismod tortor non, bibendum tortor.
@@ -48,6 +49,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         fontSize: 12.0);
   }
 
+  void _continue() {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => CreationScreen()));
+  }
+
   @override
   void dispose() {
     _scrollController.dispose();
@@ -56,37 +62,54 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final availableHeight = screenHeight -
+        200 -
+        40 -
+        72; // 200 (image) + 40 (button) + 72 (paddings)
+
     return GestureDetector(
       onTap: _showToast,
+      onLongPress: _continue,
       child: Scaffold(
         body: SafeArea(
-          child: Container(
-              alignment: Alignment.center,
-              child: Column(
+          child: Stack(
+            children: [
+              Column(
                 children: [
                   Padding(padding: EdgeInsets.all(8)),
                   SizedBox(
-                      width: MediaQuery.sizeOf(context).width - 32,
-                      height: 200,
-                      child: const Placeholder()),
+                    width: MediaQuery.sizeOf(context).width - 32,
+                    height: 200,
+                    child: const Placeholder(),
+                  ),
                   Padding(padding: EdgeInsets.all(8)),
                   SizedBox(
-                      width: MediaQuery.sizeOf(context).width - 32,
-                      height: MediaQuery.sizeOf(context).height - 350,
-                      child: SingleChildScrollView(
-                          controller: _scrollController,
-                          child: const Text(text))),
-                  Padding(padding: EdgeInsets.all(8)),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      minimumSize:
-                          Size(MediaQuery.sizeOf(context).width - 32, 40),
+                    height: availableHeight,
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(text),
+                      ),
                     ),
-                    child: const Text("Continue"),
-                  )
+                  ),
                 ],
-              )),
+              ),
+              Positioned(
+                bottom: 16,
+                left: 16,
+                right: 16,
+                child: ElevatedButton(
+                  onPressed: _continue,
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 40),
+                  ),
+                  child: const Text("Continue"),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

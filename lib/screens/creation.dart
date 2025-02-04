@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soulforge/helpers/database.dart';
 import 'package:soulforge/models/entities/races.dart';
+import 'package:soulforge/screens/distribution.dart';
 
 class CreationScreen extends StatefulWidget {
   const CreationScreen({super.key});
@@ -11,6 +12,7 @@ class CreationScreen extends StatefulWidget {
 
 class _CreationScreenState extends State<CreationScreen> {
   final TextEditingController _nameController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   late Future<List<Race>> _racesFuture;
   int _selectedAvatarIndex = 0;
   int _selectedRaceIndex = 0;
@@ -71,7 +73,6 @@ class _CreationScreenState extends State<CreationScreen> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Avatar Selection
             SizedBox(
@@ -121,28 +122,38 @@ class _CreationScreenState extends State<CreationScreen> {
             SizedBox(height: 16),
 
             // Name Input Field
-            TextField(
-              controller: _nameController,
-              decoration: InputDecoration(
-                labelText: "Character Name",
-                hintText: "Enter your hero's name...",
-                border: OutlineInputBorder(),
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.shuffle),
-                  onPressed: () {
-                    setState(() {
-                      _nameController.text =
-                          "RandomName${_selectedAvatarIndex + 1}";
-                    });
-                  },
+            Form(
+              key: _formKey,
+              child: TextFormField(
+                controller: _nameController,
+                decoration: InputDecoration(
+                  labelText: "Character Name",
+                  hintText: "Enter your hero's name...",
+                  border: OutlineInputBorder(),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.shuffle),
+                    onPressed: () {
+                      setState(() {
+                        _nameController.text =
+                            "RandomName${_selectedAvatarIndex + 1}";
+                      });
+                    },
+                  ),
                 ),
+                maxLength: 12,
+                validator: (value) {
+                  if (value == null || value.trim().isEmpty) {
+                    return 'Name cannot be empty';
+                  }
+                  return null;
+                },
               ),
-              maxLength: 12,
             ),
             SizedBox(height: 16),
 
             // Race Selection with FutureBuilder
             Expanded(
+              // This allows the ListView to take available space
               child: FutureBuilder<List<Race>>(
                 future: _racesFuture,
                 builder: (context, snapshot) {
@@ -160,25 +171,33 @@ class _CreationScreenState extends State<CreationScreen> {
                       itemCount: races.length,
                       itemBuilder: (context, index) {
                         final race = races[index];
-                        return ListTile(
-                          leading: Icon(Icons.person),
-                          title: Text(race.name),
-                          subtitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Perk: ${race.perk}',
-                                style: TextStyle(fontSize: 12.0),
-                              ),
-                              SizedBox(height: 4),
-                              Text(race.description ?? ''),
-                            ],
+                        final isSelected = _selectedRaceIndex == index;
+
+                        return Material(
+                          color: isSelected
+                              ? Colors.blue.withAlpha(50)
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(8),
+                          child: ListTile(
+                            leading: Icon(Icons.person),
+                            title: Text(race.name),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Perk: ${race.perk}',
+                                  style: TextStyle(fontSize: 12.0),
+                                ),
+                                SizedBox(height: 4),
+                                Text(race.description ?? ''),
+                              ],
+                            ),
+                            isThreeLine: true,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            onTap: () => _onRaceSelect(index),
                           ),
-                          isThreeLine: true,
-                          trailing: _selectedRaceIndex == index
-                              ? Icon(Icons.check_circle, color: Colors.green)
-                              : null,
-                          onTap: () => _onRaceSelect(index),
                         );
                       },
                     );
@@ -187,25 +206,32 @@ class _CreationScreenState extends State<CreationScreen> {
               ),
             ),
 
+            SizedBox(height: 16), // Ensure spacing for the button
+
             // Confirm Button
             ElevatedButton(
               onPressed: () {
-                if (_nameController.text.isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Please enter a name!")),
-                  );
-                  return;
+                if (_formKey.currentState!.validate()) {
+                  _racesFuture.then((races) {
+                    if (!context.mounted) return;
+
+                    final selectedAvatar = avatars[_selectedAvatarIndex];
+                    final selectedRace = races[_selectedRaceIndex].name;
+                    final characterName = _nameController.text;
+
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const DistributionScreen()));
+
+                    debugPrint(
+                        "Avatar: $selectedAvatar, Race: $selectedRace, Name: $characterName");
+                  });
                 }
-
-                _racesFuture.then((races) {
-                  final selectedAvatar = avatars[_selectedAvatarIndex];
-                  final selectedRace = races[_selectedRaceIndex].name;
-                  final characterName = _nameController.text;
-
-                  debugPrint(
-                      "Avatar: $selectedAvatar, Race: $selectedRace, Name: $characterName");
-                });
               },
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(double.infinity, 40),
+              ),
               child: Text("Confirm"),
             ),
           ],
