@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:soulforge/screens/creation.dart';
-import 'package:soulforge/screens/distribution.dart';
 import 'package:soulforge/screens/welcome.dart';
 
 void main() {
@@ -14,7 +13,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const CreationScreen(),
+      home: const WelcomeScreen(),
       theme: ThemeData(fontFamily: "Bitter"),
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [
@@ -29,7 +28,6 @@ class MainApp extends StatelessWidget {
       routes: {
         "/welcome": (context) => const WelcomeScreen(),
         "/creation": (context) => const CreationScreen(),
-        "/distribution": (context) => const DistributionScreen(),
       },
     );
   }

@@ -217,12 +217,21 @@ class _CreationScreenState extends State<CreationScreen> {
 
                     final selectedAvatar = avatars[_selectedAvatarIndex];
                     final selectedRace = races[_selectedRaceIndex].name;
+                    final raceDescription =
+                        races[_selectedRaceIndex].description;
                     final characterName = _nameController.text;
 
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const DistributionScreen()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DistributionScreen(
+                          characterName: characterName,
+                          selectedAvatar: selectedAvatar,
+                          selectedRace: selectedRace,
+                          raceDescription: raceDescription ?? "",
+                        ),
+                      ),
+                    );
 
                     debugPrint(
                         "Avatar: $selectedAvatar, Race: $selectedRace, Name: $characterName");
