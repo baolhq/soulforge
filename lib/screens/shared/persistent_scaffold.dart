@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PersistentScaffold extends StatelessWidget {
   final Widget body;
@@ -48,19 +49,33 @@ class PersistentScaffold extends StatelessWidget {
         child: ListView(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
-          children: List.generate(6, (index) => _buildPartyMember(index)),
+          children: [
+            _buildPartyMember('lib/assets/images/icons/axe.svg'),
+            _buildPartyMember('lib/assets/images/icons/shield.svg'),
+            _buildPartyMember('lib/assets/images/icons/broadsword.svg'),
+            _buildPartyMember('lib/assets/images/icons/dagger.svg'),
+            _buildPartyMember('lib/assets/images/icons/flame.svg'),
+            _buildPartyMember('lib/assets/images/icons/health.svg'),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildPartyMember(int index) {
+  Widget _buildPartyMember(String avatar) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: CircleAvatar(
-        radius: 24,
-        backgroundImage: AssetImage("assets/character_$index.png"),
-      ),
-    );
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        child: CircleAvatar(
+          radius: 24,
+          backgroundColor: Colors.grey[300], // Optional background color
+          child: ClipOval(
+            child: SvgPicture.asset(
+              avatar,
+              width: 24,
+              height: 24,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ));
   }
 }
