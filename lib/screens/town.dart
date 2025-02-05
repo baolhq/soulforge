@@ -1,5 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:soulforge/screens/academy.dart';
+import 'package:soulforge/screens/arena.dart';
+import 'package:soulforge/screens/shared/persistent_scaffold.dart';
+import 'package:soulforge/screens/crafting.dart';
+import 'package:soulforge/screens/explore.dart';
+import 'package:soulforge/screens/market.dart';
+import 'package:soulforge/screens/party.dart';
+import 'package:soulforge/screens/setting.dart';
+import 'package:soulforge/screens/smithy.dart';
 import 'package:soulforge/screens/tavern.dart';
+import 'package:soulforge/screens/training.dart';
 
 /// The main screen where player accesses other features, meets people, and gets quests.
 class TownScreen extends StatelessWidget {
@@ -7,24 +17,8 @@ class TownScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.settings),
-          onPressed: () {
-            // Open settings
-          },
-        ),
-        title: const Text("Town"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.emoji_events),
-            onPressed: () {
-              // Handle premium access
-            },
-          ),
-        ],
-      ),
+    return PersistentScaffold(
+      title: "Town",
       body: Column(
         children: [
           // Town Image
@@ -48,32 +42,27 @@ class TownScreen extends StatelessWidget {
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               children: [
-                _buildBuildingButton(Icons.local_bar, "Tavern", context),
-                _buildBuildingButton(Icons.explore, "Explore", context),
-                _buildBuildingButton(Icons.store, "Market", context),
-                _buildBuildingButton(Icons.groups, "Party", context),
-                _buildBuildingButton(Icons.construction, "Smithy", context),
-                _buildBuildingButton(Icons.school, "Academy", context),
-                _buildBuildingButton(Icons.sports_mma, "Arena", context),
                 _buildBuildingButton(
-                    Icons.local_fire_department, "Forge", context),
-                _buildBuildingButton(Icons.fitness_center, "Training", context),
-                _buildBuildingButton(Icons.menu_book, "Library", context),
+                    Icons.local_bar, "Tavern", context, TavernScreen()),
+                _buildBuildingButton(
+                    Icons.explore, "Explore", context, ExploreScreen()),
+                _buildBuildingButton(
+                    Icons.store, "Market", context, MarketScreen()),
+                _buildBuildingButton(
+                    Icons.water_drop, "Crafting", context, CraftingScreen()),
+                _buildBuildingButton(
+                    Icons.groups, "Party", context, PartyScreen()),
+                _buildBuildingButton(
+                    Icons.construction, "Smithy", context, SmithyScreen()),
+                _buildBuildingButton(
+                    Icons.school, "Academy", context, AcademyScreen()),
+                _buildBuildingButton(
+                    Icons.sports_mma, "Arena", context, ArenaScreen()),
+                _buildBuildingButton(Icons.fitness_center, "Training", context,
+                    TrainingScreen()),
+                _buildBuildingButton(
+                    Icons.tune, "Settings", context, SettingScreen()),
               ],
-            ),
-          ),
-
-          // Party Display
-          Container(
-            height: 80,
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            color: Colors.black54,
-            child: Center(
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                children: List.generate(6, (index) => _buildPartyMember(index)),
-              ),
             ),
           ),
         ],
@@ -82,7 +71,7 @@ class TownScreen extends StatelessWidget {
   }
 
   Widget _buildBuildingButton(
-      IconData icon, String label, BuildContext context) {
+      IconData icon, String label, BuildContext context, Widget targetScreen) {
     return SizedBox(
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
@@ -91,27 +80,16 @@ class TownScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8.0))),
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => TavernScreen()));
+              context, MaterialPageRoute(builder: (context) => targetScreen));
         },
         child: Row(
           children: [
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             Icon(icon, size: 24),
-            SizedBox(width: 16),
+            const SizedBox(width: 16),
             Text(label, textAlign: TextAlign.center),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildPartyMember(int index) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: CircleAvatar(
-        radius: 24,
-        backgroundImage: AssetImage(
-            "assets/character_$index.png"), // Replace with actual character avatar
       ),
     );
   }

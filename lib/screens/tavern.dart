@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soulforge/screens/shared/persistent_scaffold.dart';
 
 class TavernScreen extends StatefulWidget {
   const TavernScreen({super.key});
@@ -25,22 +26,8 @@ class _TavernScreenState extends State<TavernScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context), // Go back to Town
-        ),
-        title: const Text("Tavern"),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.emoji_events),
-            onPressed: () {
-              // Handle premium access
-            },
-          ),
-        ],
-      ),
+    return PersistentScaffold(
+      title: "Tavern",
       body: Column(
         children: [
           // Tavern Image
@@ -74,9 +61,6 @@ class _TavernScreenState extends State<TavernScreen>
               ],
             ),
           ),
-
-          // Persistent Party Bar
-          _buildPartyBar(),
         ],
       ),
     );
@@ -92,31 +76,5 @@ class _TavernScreenState extends State<TavernScreen>
 
   Widget _buildVaultTab() {
     return Center(child: Text("Store valuables here"));
-  }
-
-  Widget _buildPartyBar() {
-    return Container(
-      height: 80,
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      color: Colors.black54,
-      child: Center(
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          children: List.generate(6, (index) => _buildPartyMember(index)),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildPartyMember(int index) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: CircleAvatar(
-        radius: 30,
-        backgroundImage: AssetImage(
-            "assets/character_$index.png"), // Replace with actual avatars
-      ),
-    );
   }
 }
