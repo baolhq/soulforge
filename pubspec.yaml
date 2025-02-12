@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  fluttertoast: ^8.2.11
+  fluttertoast: ^8.2.12
   flutter_localizations:
     sdk: flutter
   intl: any
